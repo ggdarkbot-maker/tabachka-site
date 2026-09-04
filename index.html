@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080a0d">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>VAPE LVL — каталог и апгрейд</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&display=swap');
+
+    @property --zone-start {
+      syntax: '<angle>';
+      inherits: false;
+      initial-value: 180deg;
+    }
+
+    @property --zone-end {
+      syntax: '<angle>';
+      inherits: false;
+      initial-value: 180deg;
+    }
+
+    :root {
+      color-scheme: dark;
+      --bg: #07070a;
+      --surface: #101116;
+      --surface-2: #17181f;
+      --surface-3: #1d1f27;
+      --glass: rgba(15, 16, 21, .84);
+      --text: #faf8f7;
+      --muted: #aaa6ad;
+      --subtle: #77747d;
+      --line: rgba(255, 255, 255, .09);
+      --line-strong: rgba(255, 255, 255, .16);
+      --accent: #ff354f;
+      --accent-2: #ff784b;
+      --accent-hot: #ff1744;
+      --accent-soft: rgba(255, 53, 79, .12);
+      --danger: #ff5368;
+      --warning: #ff9d43;
+      --success: #62d89d;
+      --radius-sm: 12px;
+      --radius: 18px;
+      --radius-lg: 26px;
+      --shadow: 0 26px 72px rgba(0, 0, 0, .44);
+      --container: 1440px;
+      --nav-h: 76px;
+      --ease: cubic-bezier(.2, .8, .2, 1);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100dvh;
+      background:
+        radial-gradient(circle at 88% 8%, rgba(255, 53, 79, .13), transparent 30rem),
+        radial-gradient(circle at 4% 72%, rgba(255, 120, 75, .055), transparent 27rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Manrope, "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { color: inherit; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 3px solid rgba(255, 53, 79, .72); outline-offset: 3px; }
+
+    .skip-link {
+      position: fixed; left: 16px; top: -80px; z-index: 1000;
+      padding: 12px 16px; border-radius: 10px; background: var(--accent); color: #111;
+    }
+    .skip-link:focus { top: 16px; }
+
+    .icon { width: 22px; height: 22px; flex: 0 0 auto; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-sm { width: 18px; height: 18px; }
+
+    .shell { width: min(100% - 32px, var(--container)); margin: 0 auto; }
+    .app-header {
+      position: sticky; top: 0; z-index: 40;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8, 10, 13, .82);
+      backdrop-filter: blur(20px) saturate(145%);
+    }
+    .header-row { min-height: 76px; display: grid; grid-template-columns: auto minmax(240px, 620px) auto; align-items: center; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; font-family: Unbounded, Manrope, sans-serif; font-weight: 800; letter-spacing: -.055em; font-size: 18px; white-space: nowrap; }
+    .brand-mark { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px; color: #fff; background: linear-gradient(145deg, var(--accent-hot), var(--accent-2)); box-shadow: 0 10px 28px rgba(255,53,79,.26), inset 0 1px rgba(255,255,255,.25); }
+    .brand-mark .icon { width: 24px; height: 24px; stroke-width: 2.3; }
+    .brand span:last-child { color: var(--accent); }
+
+    .search-wrap { position: relative; width: 100%; }
+    .search-wrap .icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--subtle); pointer-events: none; }
+    .search-input, .select, .input, .textarea {
+      width: 100%; min-height: 48px; color: var(--text); background: rgba(255,255,255,.055);
+      border: 1px solid var(--line); border-radius: 14px; transition: border-color .2s, background .2s;
+    }
+    .search-input { padding: 0 16px 0 48px; }
+    .search-input::placeholder, .input::placeholder, .textarea::placeholder { color: var(--subtle); }
+    .search-input:hover, .select:hover, .input:hover, .textarea:hover { border-color: var(--line-strong); }
+    .search-input:focus, .select:focus, .input:focus, .textarea:focus { outline: none; border-color: rgba(255,53,79,.64); background: rgba(255,255,255,.075); box-shadow: 0 0 0 4px rgba(255,53,79,.08); }
+    .select { color-scheme: dark; }
+    .select option { color: #f8f6f5; background: #18191f; }
+    .select option:checked { color: #fff; background: #c82039; }
+    .file-input { color: var(--muted); }
+    .file-input::file-selector-button { min-height: 36px; margin-right: 12px; padding: 0 14px; border: 1px solid rgba(255,255,255,.12); border-radius: 10px; color: #fff; background: #292a31; font: 700 13px/1 Manrope, sans-serif; cursor: pointer; }
+    .file-input::file-selector-button:hover { background: #34353d; }
+
+    .header-actions { display: flex; gap: 10px; }
+    .icon-btn, .ghost-btn, .primary-btn, .soft-btn, .danger-btn {
+      min-height: 48px; border: 1px solid var(--line); border-radius: 14px; cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px; font-weight: 700;
+      transition: background .2s, border-color .2s, color .2s, opacity .2s, transform .15s;
+      touch-action: manipulation;
+    }
+    .icon-btn:active, .ghost-btn:active, .primary-btn:active, .soft-btn:active, .danger-btn:active { transform: scale(.98); }
+    .icon-btn { width: 48px; padding: 0; position: relative; background: rgba(255,255,255,.055); }
+    .icon-btn:hover, .ghost-btn:hover { background: rgba(255,255,255,.09); border-color: var(--line-strong); }
+    .badge {
+      position: absolute; right: -5px; top: -5px; min-width: 20px; height: 20px; padding: 0 5px;
+      display: grid; place-items: center; border-radius: 999px; background: var(--accent); color: #fff;
+      font-size: 11px; font-weight: 900; border: 2px solid var(--bg);
+    }
+    .ghost-btn { padding: 0 16px; background: rgba(255,255,255,.045); }
+    .primary-btn { padding: 0 18px; color: #fff; background: linear-gradient(135deg, var(--accent-hot), var(--accent-2)); border-color: rgba(255,92,107,.68); box-shadow: 0 12px 32px rgba(255,53,79,.18), inset 0 1px rgba(255,255,255,.2); }
+    .primary-btn:hover { filter: brightness(1.08); border-color: rgba(255,255,255,.26); box-shadow: 0 15px 38px rgba(255,53,79,.25), inset 0 1px rgba(255,255,255,.26); }
+    .primary-btn:disabled, .soft-btn:disabled { cursor: not-allowed; opacity: .42; transform: none; }
+    .soft-btn { padding: 0 16px; background: var(--accent-soft); border-color: rgba(255,53,79,.25); color: #ff7a8d; }
+    .soft-btn:hover { background: rgba(255,53,79,.18); }
+    .danger-btn { padding: 0 16px; background: rgba(255,94,104,.1); color: #ff8790; border-color: rgba(255,94,104,.18); }
+
+    main { padding: 34px 0 calc(var(--nav-h) + 48px); }
+    main:focus { outline: none; }
+    .view { display: none; animation: view-in .38s var(--ease) both; }
+    .view.active { display: block; }
+    @keyframes view-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+    .page-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 26px; }
+    .eyebrow { color: #ff6a7f; text-transform: uppercase; letter-spacing: .16em; font-size: 11px; font-weight: 800; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font-family: Unbounded, Manrope, sans-serif; font-size: clamp(28px, 3.7vw, 49px); font-weight: 700; line-height: 1.08; letter-spacing: -.045em; text-wrap: balance; }
+    h2 { margin-bottom: 6px; font-size: clamp(24px, 3vw, 36px); line-height: 1.12; letter-spacing: -.04em; }
+    h3 { margin-bottom: 4px; font-size: 17px; line-height: 1.3; }
+    small, .telegram, .product-category, .product-desc, .slot-label, .chance-caption,
+    .picker-heading p, .picker-card, .stat span, .history-item, .field label, .form-help, .nav-btn {
+      font-family: Manrope, "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: -.012em;
+      font-feature-settings: "kern" 1, "tnum" 1;
+    }
+    .page-subtitle { max-width: 660px; margin: 0; color: var(--muted); }
+
+    .catalog-hero {
+      min-height: 250px; margin-bottom: 24px; padding: clamp(24px, 5vw, 58px); overflow: hidden;
+      display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr); align-items: center; gap: 24px;
+      position: relative; border: 1px solid var(--line); border-radius: var(--radius-lg);
+      background: linear-gradient(125deg, #121318 0%, #101116 55%, #211218 100%); box-shadow: var(--shadow);
+    }
+    .catalog-hero::after {
+      content: ""; position: absolute; right: -8%; top: -40%; width: 50%; aspect-ratio: 1;
+      border-radius: 50%; background: radial-gradient(circle, rgba(255,53,79,.32), transparent 64%); filter: blur(8px);
+    }
+    .hero-copy { position: relative; z-index: 1; }
+    .hero-copy h1 { max-width: 760px; }
+    .hero-copy p { max-width: 580px; color: #aeb7c3; margin-bottom: 24px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-art { position: relative; min-height: 180px; z-index: 1; }
+    .float-product {
+      position: absolute; width: min(270px, 68%); aspect-ratio: 1.25; right: 8%; top: 50%; transform: translateY(-50%) rotate(-8deg);
+      border-radius: 28px; border: 1px solid rgba(255,255,255,.13); background: linear-gradient(145deg, rgba(255,255,255,.13), rgba(255,255,255,.025));
+      box-shadow: 0 32px 80px rgba(0,0,0,.55), inset 0 1px rgba(255,255,255,.13); backdrop-filter: blur(10px);
+    }
+    .float-product::before, .float-product::after { content: ""; position: absolute; border-radius: 999px; background: linear-gradient(160deg, #ff7184, #b80e2d); box-shadow: 0 0 34px rgba(255,53,79,.24); }
+    .float-product::before { width: 36%; height: 68%; left: 32%; top: 16%; }
+    .float-product::after { width: 10%; height: 20%; left: 45%; top: 5%; background: #d9e2e8; }
+    .orbit { position: absolute; inset: 1%; border: 1px solid rgba(255,53,79,.24); border-radius: 50%; transform: rotate(18deg); }
+
+    .quick-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+    .quick-card { min-height: 86px; padding: 16px; text-align: left; color: var(--text); cursor: pointer; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); transition: border-color .2s, background .2s; }
+    .quick-card:hover, .quick-card.active { background: var(--surface-2); border-color: rgba(255,53,79,.42); box-shadow: inset 0 1px rgba(255,255,255,.025); }
+    .quick-title { display: flex; align-items: center; gap: 8px; font-weight: 800; }
+    .quick-card small { display: block; margin-top: 5px; color: var(--muted); }
+
+    .filter-bar { display: grid; grid-template-columns: 1fr 200px 180px; gap: 12px; margin-bottom: 22px; }
+    .select { appearance: none; padding: 0 42px 0 15px; cursor: pointer; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 18px) 21px, calc(100% - 13px) 21px; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; }
+    .result-count { align-self: center; color: var(--muted); font-size: 14px; }
+    .products-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    .product-card { min-width: 0; padding: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); color: var(--text); background: var(--surface); text-align: left; cursor: pointer; transition: transform .25s var(--ease), border-color .25s, box-shadow .25s; touch-action: manipulation; }
+    .product-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.16); box-shadow: 0 18px 42px rgba(0,0,0,.28); }
+    .product-card:focus-visible { outline: 3px solid rgba(255,53,79,.72); outline-offset: 4px; }
+    .product-media { aspect-ratio: 1.18; display: grid; place-items: center; position: relative; overflow: hidden; background: linear-gradient(145deg, var(--tone, #20262e), #0f1217); }
+    .product-media::after { content: ""; position: absolute; inset: auto 10% -45% 10%; height: 65%; border-radius: 50%; background: var(--glow, rgba(255,53,79,.18)); filter: blur(32px); }
+    .product-media img { width: 84%; height: 84%; object-fit: contain; position: relative; z-index: 1; filter: drop-shadow(0 16px 22px rgba(0,0,0,.45)); }
+    .product-chip { position: absolute; left: 12px; top: 12px; z-index: 2; padding: 6px 9px; border-radius: 999px; color: #e8edf3; background: rgba(5,7,10,.62); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(10px); font-size: 11px; font-weight: 800; }
+    .stock-badge { position: absolute; right: 12px; top: 12px; z-index: 2; padding: 6px 9px; border: 1px solid rgba(255,255,255,.13); border-radius: 999px; color: #f2f5f7; background: rgba(5,7,10,.7); backdrop-filter: blur(10px); font-size: 11px; font-weight: 800; font-variant-numeric: tabular-nums; }
+    .stock-badge.order { color: #ffd7c4; border-color: rgba(255,120,75,.28); background: rgba(72,27,19,.72); }
+    .product-info { padding: 16px; }
+    .product-category { color: var(--muted); font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    .product-name { min-height: 44px; margin-bottom: 8px; font-weight: 750; overflow-wrap: anywhere; }
+    .product-desc { color: var(--muted); font-size: 13px; font-weight: 500; line-height: 1.55; min-height: 40px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .product-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; }
+    .price { font-size: 18px; font-weight: 900; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .product-flavors { margin-top: 10px; color: var(--subtle); font-size: 12px; font-weight: 700; }
+    .add-btn { width: 48px; min-height: 48px; padding: 0; display: grid; place-items: center; border-radius: 50%; }
+    .product-card:hover .add-btn { transform: rotate(90deg); }
+
+    .cart-layout { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(300px, .65fr); gap: 20px; align-items: start; }
+    .panel { border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--glass); box-shadow: var(--shadow), inset 0 1px rgba(255,255,255,.035); backdrop-filter: blur(18px) saturate(135%); }
+    .panel-head { padding: 22px 22px 18px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .panel-head h2, .panel-head h3 { margin: 0; }
+    .cart-list { padding: 8px 22px; }
+    .cart-item { display: grid; grid-template-columns: 78px minmax(0, 1fr) auto; align-items: center; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .cart-item:last-child { border-bottom: 0; }
+    .cart-thumb { width: 78px; aspect-ratio: 1; border-radius: 14px; display: grid; place-items: center; overflow: hidden; background: var(--surface-3); }
+    .cart-thumb img { width: 85%; height: 85%; object-fit: contain; }
+    .cart-meta { min-width: 0; }
+    .cart-meta p { color: var(--muted); font-size: 13px; margin: 3px 0 0; }
+    .cart-side { display: flex; align-items: center; gap: 12px; }
+    .cart-quantity { display: inline-flex; align-items: center; gap: 2px; padding: 3px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.035); }
+    .cart-quantity button { width: 36px; height: 36px; padding: 0; display: grid; place-items: center; border: 0; border-radius: 9px; color: var(--text); background: transparent; cursor: pointer; }
+    .cart-quantity button:hover { background: rgba(255,255,255,.08); }
+    .cart-quantity button:disabled { opacity: .35; cursor: not-allowed; }
+    .cart-quantity .icon { width: 16px; height: 16px; }
+    .cart-quantity strong { min-width: 30px; text-align: center; font-variant-numeric: tabular-nums; }
+    .remove-btn { width: 44px; min-height: 44px; padding: 0; border-radius: 12px; }
+    .summary { position: sticky; top: 102px; padding: 24px; }
+    .summary-row { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; color: var(--muted); }
+    .summary-row strong { color: var(--text); font-variant-numeric: tabular-nums; }
+    .summary-total { margin: 10px 0 20px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 20px; color: var(--text); }
+    .wide { width: 100%; }
+    .manager-link { margin-top: 10px; }
+    .empty-state { padding: 52px 24px; text-align: center; color: var(--muted); }
+    .empty-icon { width: 56px; height: 56px; display: grid; place-items: center; margin: 0 auto 16px; border-radius: 18px; background: rgba(255,255,255,.06); color: var(--text); }
+
+    .upgrade-stage { position: relative; overflow: hidden; contain: paint; isolation: isolate; padding: clamp(18px, 3vw, 32px); border: 1px solid rgba(255,85,107,.2); border-radius: 30px; background: radial-gradient(circle at 50% 25%, rgba(255,30,65,.13), transparent 38%), linear-gradient(145deg, #101116, #09090c); box-shadow: var(--shadow); }
+    .upgrade-stage::before { content: ""; position: absolute; inset: 0; opacity: .35; pointer-events: none; background-image: linear-gradient(30deg, rgba(255,255,255,.025) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,.025) 87.5%), linear-gradient(150deg, rgba(255,255,255,.025) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,.025) 87.5%); background-size: 72px 126px; }
+    .upgrade-head { position: relative; text-align: center; margin-bottom: 24px; }
+    .upgrade-head h1 { font-size: clamp(27px, 3.6vw, 44px); }
+    .upgrade-head p { color: var(--muted); margin: 0; }
+    .upgrade-main { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 290px minmax(0, 1fr); gap: 20px; align-items: stretch; }
+    .upgrade-slot { min-height: 360px; padding: 22px; border: 1px solid var(--line); border-radius: 24px; background: linear-gradient(155deg, rgba(20,21,27,.9), rgba(9,10,14,.92)); display: flex; flex-direction: column; box-shadow: inset 0 1px rgba(255,255,255,.035); }
+    .slot-label { display: flex; justify-content: space-between; gap: 10px; align-items: center; color: var(--muted); font-size: 13px; font-weight: 700; }
+    .source-switch { display: flex; padding: 4px; border: 1px solid rgba(255,255,255,.065); border-radius: 13px; background: rgba(255,255,255,.045); }
+    .source-switch button { min-height: 38px; padding: 0 12px; border: 0; border-radius: 10px; color: var(--muted); background: transparent; font-size: 12px; font-weight: 750; cursor: pointer; transition: color .18s, background .22s var(--ease), box-shadow .22s; }
+    .source-switch button.active { color: #fff; background: linear-gradient(135deg, rgba(255,39,70,.92), rgba(230,63,41,.9)); box-shadow: 0 7px 18px rgba(255,53,79,.17), inset 0 1px rgba(255,255,255,.18); }
+    .source-switch button:active { transform: scale(.97); }
+    .mode-count { min-width: 20px; height: 20px; padding: 0 6px; margin-left: 4px; display: inline-grid; place-items: center; border-radius: 999px; color: inherit; background: rgba(255,255,255,.1); font-size: 10px; font-variant-numeric: tabular-nums; }
+    .source-switch button.active .mode-count { background: rgba(0,0,0,.18); }
+    .selected-product { flex: 1; display: grid; place-items: center; text-align: center; padding: 18px 8px; }
+    .selected-product img { width: min(76%, 230px); height: 180px; object-fit: contain; filter: drop-shadow(0 18px 26px rgba(0,0,0,.5)); }
+    .selected-product h3 { margin: 12px 0 5px; font-size: 19px; }
+    .selected-product .price { color: var(--accent); }
+    .target-slot .selected-product .price { color: var(--warning); }
+    .source-stack { width: 100%; }
+    .source-stack-art { min-height: 180px; display: flex; align-items: center; justify-content: center; padding-left: 26px; }
+    .source-stack-art img { width: min(48%, 150px); height: 156px; margin-left: -26px; padding: 8px; border: 1px solid rgba(255,255,255,.08); border-radius: 20px; background: rgba(255,255,255,.035); box-shadow: 0 16px 32px rgba(0,0,0,.3); }
+    .source-stack-art img:nth-child(2) { transform: translateY(-8px); }
+    .source-stack-art img:nth-child(3) { transform: translateY(4px); }
+    .source-stack-names { max-width: 360px; margin: 8px auto 5px; color: var(--muted); font-size: 12px; font-weight: 650; line-height: 1.45; }
+
+    .chance-column { display: flex; flex-direction: column; justify-content: center; align-items: stretch; gap: 18px; }
+    .chance-wheel { --zone-start: 180deg; --zone-end: 180deg; position: relative; width: min(100%, 260px); aspect-ratio: 1; margin: 0 auto; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(from 0deg, #252831 0 var(--zone-start), var(--accent-hot) var(--zone-start), var(--accent-2) 180deg, var(--accent-hot) var(--zone-end), #252831 var(--zone-end) 360deg); box-shadow: 0 0 0 12px rgba(255,255,255,.025), 0 0 60px rgba(255,40,73,.15); transition: --zone-start .5s cubic-bezier(.2,.8,.2,1), --zone-end .5s cubic-bezier(.2,.8,.2,1), box-shadow .3s; }
+    .chance-wheel::before { content: ""; position: absolute; inset: 13px; border-radius: 50%; background: radial-gradient(circle at 50% 42%, #171820, #090a0e 72%); border: 1px solid rgba(255,255,255,.1); box-shadow: inset 0 0 45px rgba(0,0,0,.62); }
+    .chance-wheel::after { content: ""; position: absolute; inset: 37px; border-radius: 50%; border: 1px dashed rgba(255,255,255,.13); }
+    .chance-copy { position: relative; z-index: 2; text-align: center; }
+    .chance-number { display: block; font-family: Unbounded, Manrope, sans-serif; font-size: clamp(33px, 4.5vw, 48px); line-height: 1; font-weight: 800; letter-spacing: -.065em; color: #ff5d72; font-variant-numeric: tabular-nums; text-shadow: 0 0 30px rgba(255,53,79,.22); }
+    .chance-caption { display: block; margin-top: 7px; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; }
+    .needle-wrap { position: absolute; inset: -7px; z-index: 4; border-radius: 50%; transform: rotate(0deg); transition: transform 2.35s cubic-bezier(.12,.72,.08,1); pointer-events: none; backface-visibility: hidden; }
+    .needle { position: absolute; left: 50%; top: -5px; width: 18px; height: 28px; transform: translateX(-50%); filter: drop-shadow(0 5px 8px rgba(0,0,0,.55)); }
+    .needle::before { content: ""; position: absolute; left: 3px; top: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 22px solid #fff; }
+    .upgrade-btn { min-height: 56px; font-size: 16px; text-transform: uppercase; letter-spacing: .04em; }
+    .upgrade-btn:active:not(:disabled) { transform: scale(.975); transition-duration: .1s; }
+    .upgrade-btn.is-running { color: #fff; background: linear-gradient(110deg, #a80e2b, var(--accent-hot), #ff6a43); box-shadow: 0 12px 38px rgba(255,23,68,.3); }
+    .chance-wheel.is-spinning { animation: wheel-tension 2.35s cubic-bezier(.2,.72,.12,1) both; }
+    .chance-wheel.is-spinning .needle-wrap { will-change: transform; }
+    .chance-wheel.is-spinning::after { animation: dial-counterspin 2.35s cubic-bezier(.14,.7,.1,1) both; }
+    .chance-wheel.is-spinning .chance-copy { animation: chance-breathe 2.35s cubic-bezier(.2,.7,.2,1) both; }
+    @keyframes wheel-tension {
+      0% { transform: scale(.975); }
+      18% { transform: scale(1.018); }
+      76% { transform: scale(1.008); }
+      92% { transform: scale(1.025); }
+      100% { transform: scale(1); }
+    }
+    @keyframes dial-counterspin { from { transform: rotate(0deg); opacity: .7; } 70% { opacity: .22; } to { transform: rotate(-300deg); opacity: .58; } }
+    @keyframes chance-breathe { 0%, 100% { transform: scale(1); opacity: 1; } 18% { transform: scale(.97); opacity: .72; } 76% { transform: scale(.94); opacity: .52; } 92% { transform: scale(1.035); opacity: 1; } }
+
+    .picker-columns { position: relative; margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .picker-panel { padding: 18px; min-width: 0; contain: layout paint; backdrop-filter: none; background: #111218; }
+    .picker-heading { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+    .picker-heading h3 { margin: 0; }
+    .picker-heading p { margin: 4px 0 0; color: var(--muted); font-size: 13px; font-weight: 550; }
+    .picker-source-switch { flex: 0 0 auto; }
+    .picker-tools { display: grid; grid-template-columns: minmax(0, 1fr) 150px; gap: 10px; margin: 14px 0; }
+    .picker-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-height: 460px; overflow: auto; padding-right: 4px; scrollbar-color: #394451 transparent; }
+    .picker-card { min-width: 0; padding: 10px; text-align: left; color: var(--text); cursor: pointer; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.035); transition: border-color .2s, background .2s; }
+    .picker-card:hover { background: rgba(255,255,255,.06); border-color: var(--line-strong); }
+    .picker-card.selected { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent), 0 10px 24px rgba(255,53,79,.1); background: rgba(255,53,79,.08); }
+    .picker-card img { width: 100%; aspect-ratio: 1.25; object-fit: contain; }
+    .picker-card strong { display: block; margin-top: 8px; font-size: 13px; font-weight: 750; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .picker-card span { color: var(--muted); font-size: 13px; font-weight: 650; font-variant-numeric: tabular-nums; }
+    .picker-card .source-origin { width: max-content; margin-top: 6px; padding: 4px 7px; display: block; border-radius: 7px; color: #ff8b9b; background: rgba(255,53,79,.1); font-style: normal; font-size: 9px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+    .picker-card .source-origin.owned { color: #9de7c2; background: rgba(98,216,157,.1); }
+    .picker-card .selection-index { position: absolute; right: 8px; top: 8px; z-index: 3; width: 24px; height: 24px; margin: 0; display: grid; place-items: center; border-radius: 50%; color: #fff; background: var(--accent); box-shadow: 0 7px 16px rgba(255,53,79,.28); font-size: 11px; font-weight: 850; }
+    .picker-card { position: relative; }
+
+    .upgrade-cart-button { position: fixed; z-index: 45; left: max(16px, calc(50% - 704px)); bottom: calc(var(--nav-h) + 30px + env(safe-area-inset-bottom)); min-width: 58px; height: 58px; padding: 0 16px; border: 1px solid rgba(255,255,255,.16); border-radius: 19px; color: #fff; background: linear-gradient(145deg, rgba(255,39,70,.96), rgba(223,62,41,.96)); box-shadow: 0 18px 45px rgba(0,0,0,.45), 0 10px 28px rgba(255,53,79,.2), inset 0 1px rgba(255,255,255,.22); cursor: pointer; display: none; align-items: center; gap: 9px; font-weight: 800; }
+    .upgrade-cart-button.show { display: flex; animation: cart-materialize .32s var(--ease) both; }
+    .upgrade-cart-button .badge { position: static; border-color: transparent; color: #17171b; background: #fff; }
+    @keyframes cart-materialize { from { opacity: 0; transform: translateY(10px) scale(.94); } to { opacity: 1; transform: none; } }
+
+    .purchase-modal { position: fixed; inset: 0; z-index: 95; padding: 20px; display: grid; place-items: center; background: rgba(3,4,7,.76); backdrop-filter: blur(14px); opacity: 0; visibility: hidden; transition: opacity .22s, visibility .22s; }
+    .purchase-modal.open { opacity: 1; visibility: visible; }
+    .purchase-sheet { width: min(100%, 520px); max-height: min(760px, calc(100dvh - 40px)); overflow: auto; padding: 24px; border: 1px solid var(--line-strong); border-radius: 28px; background: rgba(19,20,26,.96); box-shadow: 0 34px 100px rgba(0,0,0,.65), inset 0 1px rgba(255,255,255,.06); transform: translateY(18px) scale(.97); transition: transform .32s var(--ease); }
+    .purchase-modal.open .purchase-sheet { transform: none; }
+
+    .product-modal { position: fixed; inset: 0; z-index: 110; padding: 20px; display: grid; place-items: center; background: rgba(2,3,6,.78); backdrop-filter: blur(18px) saturate(120%); opacity: 0; visibility: hidden; transition: opacity .22s, visibility .22s; }
+    .product-modal.open { opacity: 1; visibility: visible; }
+    .product-dialog { width: min(100%, 720px); max-height: min(880px, calc(100dvh - 40px)); overflow: hidden; display: grid; grid-template-rows: auto minmax(0,1fr) auto; border: 1px solid rgba(255,255,255,.15); border-radius: 30px; background: linear-gradient(145deg, rgba(25,27,34,.98), rgba(10,11,15,.98)); box-shadow: 0 40px 120px rgba(0,0,0,.72), inset 0 1px rgba(255,255,255,.05); transform: translateY(18px) scale(.975); transition: transform .36s cubic-bezier(.2,.85,.2,1); }
+    .product-modal.open .product-dialog { transform: none; }
+    .product-dialog-head { position: relative; min-height: 210px; padding: 22px; display: flex; align-items: flex-end; overflow: hidden; background: radial-gradient(circle at 50% 30%, var(--dialog-tone, #333), #0d1015 72%); }
+    .product-dialog-head::after { content: ""; position: absolute; inset: 45% 8% -55%; border-radius: 50%; background: rgba(255,53,79,.18); filter: blur(40px); }
+    .product-dialog-head img { position: absolute; inset: 8px 16% 34px; z-index: 1; width: 68%; height: 78%; object-fit: contain; filter: drop-shadow(0 24px 30px rgba(0,0,0,.55)); }
+    .product-dialog-head .stock-badge { left: 20px; right: auto; top: 18px; }
+    .product-close { position: absolute; z-index: 4; right: 18px; top: 18px; }
+    .product-dialog-body { min-height: 0; overflow-y: auto; padding: 24px; scrollbar-color: rgba(255,255,255,.24) transparent; }
+    .product-dialog-copy h2 { margin: 0 0 5px; font-size: clamp(24px,4vw,34px); }
+    .product-dialog-copy p { margin: 0; color: var(--muted); }
+    .variant-label { display: block; margin: 22px 0 10px; color: var(--subtle); font-size: 11px; font-weight: 850; letter-spacing: .11em; text-transform: uppercase; }
+    .flavor-list { display: grid; gap: 9px; }
+    .flavor-row { min-height: 72px; padding: 12px 12px 12px 15px; display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 14px; border: 1px solid var(--line); border-radius: 17px; background: rgba(255,255,255,.035); transition: border-color .2s, background .2s, transform .2s var(--ease); }
+    .flavor-row.selected { border-color: rgba(255,53,79,.48); background: rgba(255,53,79,.075); }
+    .flavor-row.unavailable { opacity: .52; }
+    .flavor-copy { min-width: 0; }
+    .flavor-copy strong { display: block; overflow-wrap: anywhere; }
+    .flavor-copy span { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; font-weight: 650; }
+    .flavor-copy .order { color: #ffad88; }
+    .quantity-control { display: inline-grid; grid-template-columns: 40px 32px 40px; align-items: center; padding: 3px; border: 1px solid var(--line); border-radius: 13px; background: rgba(4,5,8,.42); }
+    .quantity-control button { width: 40px; height: 40px; padding: 0; display: grid; place-items: center; border: 0; border-radius: 10px; color: var(--text); background: transparent; cursor: pointer; }
+    .quantity-control button:hover:not(:disabled) { background: rgba(255,255,255,.09); }
+    .quantity-control button:disabled { opacity: .3; cursor: not-allowed; }
+    .quantity-control .icon { width: 17px; height: 17px; }
+    .quantity-control output { text-align: center; font-weight: 850; font-variant-numeric: tabular-nums; }
+    .product-dialog-foot { padding: 14px 20px max(14px, env(safe-area-inset-bottom)); display: grid; grid-template-columns: 1fr minmax(190px,auto); align-items: center; gap: 14px; border-top: 1px solid var(--line); background: rgba(16,18,23,.92); backdrop-filter: blur(18px); }
+    .dialog-total span { display: block; color: var(--muted); font-size: 12px; }
+    .dialog-total strong { display: block; font-size: 24px; font-variant-numeric: tabular-nums; }
+    .product-add-selected { min-width: 210px; }
+    .purchase-sheet-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+    .purchase-sheet-head h2 { margin: 0; }
+    .purchase-items { margin: 12px 0; }
+    .purchase-item { display: grid; grid-template-columns: 56px minmax(0,1fr) auto; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .purchase-item img { width: 56px; height: 56px; object-fit: contain; border-radius: 12px; background: var(--surface-3); }
+    .purchase-item strong { font-size: 13px; }
+    .purchase-item span { color: var(--muted); font-size: 13px; font-weight: 650; }
+    .purchase-total { margin: 18px 0; padding-top: 16px; display: flex; justify-content: space-between; border-top: 1px solid var(--line); font-size: 18px; }
+
+    .profile-grid { display: grid; grid-template-columns: minmax(300px, .7fr) minmax(0, 1.3fr); gap: 20px; align-items: start; }
+    .profile-card { padding: 26px; position: relative; overflow: hidden; }
+    .profile-card::after { content: ""; position: absolute; right: -100px; top: -110px; width: 240px; aspect-ratio: 1; border-radius: 50%; background: rgba(255,53,79,.2); filter: blur(55px); }
+    .profile-person { position: relative; z-index: 1; display: flex; align-items: center; gap: 16px; }
+    .avatar { width: 66px; height: 66px; display: grid; place-items: center; border-radius: 22px; color: #fff; background: linear-gradient(145deg, var(--accent-hot), var(--accent-2)); font-family: Unbounded, sans-serif; font-size: 18px; font-weight: 800; box-shadow: 0 16px 35px rgba(255,53,79,.17), inset 0 1px rgba(255,255,255,.2); }
+    .telegram { color: var(--muted); font-size: 14px; }
+    .balance-card { position: relative; z-index: 1; margin-top: 24px; padding: 18px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.045); }
+    .balance-card span { color: var(--muted); font-size: 13px; }
+    .balance-card strong { display: block; margin: 4px 0 14px; font-size: 30px; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; position: relative; z-index: 1; }
+    .stat { padding: 14px; border-radius: 14px; background: rgba(255,255,255,.04); border: 1px solid var(--line); }
+    .stat strong { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+    .stat span { color: var(--muted); font-size: 12px; font-weight: 600; }
+    .inventory-panel { padding: 22px; }
+    .inventory-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+    .inventory-card { padding: 12px; border: 1px solid var(--line); border-radius: 15px; background: rgba(255,255,255,.035); }
+    .inventory-card img { width: 100%; aspect-ratio: 1.35; object-fit: contain; }
+    .inventory-card strong { display: block; margin-top: 8px; font-size: 13px; }
+    .inventory-card .price { font-size: 13px; color: var(--accent); }
+    .inventory-actions { margin-top: 10px; display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+    .inventory-actions .soft-btn, .inventory-actions .ghost-btn { min-height: 40px; padding: 0 10px; font-size: 12px; border-radius: 11px; }
+    .history { margin-top: 20px; padding: 22px; }
+    .history-list { margin-top: 12px; }
+    .history-item { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+    .history-item:last-child { border-bottom: 0; }
+    .history-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--danger); box-shadow: 0 0 14px rgba(255,94,104,.35); }
+    .history-dot.win { background: var(--success); box-shadow: 0 0 14px rgba(91,237,155,.35); }
+    .history-item p { margin: 0; color: var(--muted); font-size: 13px; }
+    .history-item strong { font-size: 13px; }
+    .history-chance { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+    details.admin { margin-top: 20px; overflow: hidden; }
+    details.admin summary { min-height: 58px; padding: 0 22px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-weight: 800; list-style: none; }
+    details.admin summary::-webkit-details-marker { display: none; }
+    .admin-form { padding: 0 22px 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: grid; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: 13px; color: var(--muted); font-weight: 650; }
+    .input { padding: 0 14px; }
+    .textarea { min-height: 96px; resize: vertical; padding: 12px 14px; }
+    .file-input { padding: 10px; }
+    .form-help { color: var(--subtle); font-size: 12px; margin: 0; }
+    .admin-product-list { grid-column: 1 / -1; display: grid; gap: 8px; margin-bottom: 2px; }
+    .admin-product-row { min-width: 0; display: grid; grid-template-columns: 48px minmax(0,1fr) auto auto auto; align-items: center; gap: 10px; padding: 10px; border: 1px solid var(--line); border-radius: 13px; background: rgba(255,255,255,.03); }
+    .admin-product-row img { width: 48px; height: 48px; object-fit: contain; border-radius: 10px; background: var(--surface-3); }
+    .admin-product-row strong { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 13px; }
+    .admin-product-row span { color: var(--muted); font-size: 12px; font-weight: 650; }
+    .admin-product-row .danger-btn { min-height: 40px; padding: 0 12px; border-radius: 11px; font-size: 12px; }
+    .admin-product-row .soft-btn { min-height: 40px; padding: 0 12px; border-radius: 11px; font-size: 12px; }
+
+    .bottom-nav {
+      position: fixed; z-index: 50; left: 50%; bottom: max(12px, env(safe-area-inset-bottom)); transform: translateX(-50%);
+      width: min(calc(100% - 24px), 620px); height: var(--nav-h); padding: 8px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
+      border: 1px solid rgba(255,255,255,.13); border-radius: 24px;
+      background: rgba(18,22,29,.88); box-shadow: 0 20px 65px rgba(0,0,0,.48); backdrop-filter: blur(22px) saturate(150%);
+    }
+    .nav-btn { min-width: 0; border: 0; border-radius: 17px; color: var(--muted); background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; font-weight: 750; transition: color .2s, background .2s; touch-action: manipulation; }
+    .nav-btn:hover { color: var(--text); background: rgba(255,255,255,.045); }
+    .nav-btn.active { color: #fff; background: linear-gradient(135deg, var(--accent-hot), var(--accent-2)); box-shadow: 0 8px 22px rgba(255,53,79,.18), inset 0 1px rgba(255,255,255,.18); }
+
+    .toast { position: fixed; z-index: 100; left: 50%; bottom: calc(var(--nav-h) + 30px + env(safe-area-inset-bottom)); transform: translate(-50%, 20px); width: min(calc(100% - 32px), 430px); padding: 14px 16px; display: flex; align-items: center; gap: 10px; border: 1px solid var(--line-strong); border-radius: 14px; color: var(--text); background: #171c23; box-shadow: var(--shadow); opacity: 0; visibility: hidden; transition: opacity .2s, transform .25s var(--ease), visibility .2s; }
+    .toast.show { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+    .toast .icon { color: var(--accent); }
+
+    .result-modal { position: fixed; inset: 0; z-index: 90; padding: 20px; display: grid; place-items: center; overflow: hidden; background: rgba(3,5,7,.78); backdrop-filter: blur(12px); opacity: 0; visibility: hidden; transition: opacity .24s, visibility .24s; }
+    .result-modal::before { content: ""; position: absolute; width: min(100vw, 760px); aspect-ratio: 1; border-radius: 50%; pointer-events: none; opacity: 0; transform: scale(.45); background: radial-gradient(circle, rgba(98,216,157,.25), transparent 66%); }
+    .result-modal.outcome-loss::before { background: radial-gradient(circle, rgba(255,53,79,.22), transparent 66%); }
+    .result-modal.open { opacity: 1; visibility: visible; }
+    .result-modal.open::before { animation: result-halo .72s var(--ease) both; }
+    .result-card { position: relative; z-index: 1; width: min(100%, 480px); padding: 34px; text-align: center; border: 1px solid var(--line-strong); border-radius: 28px; background: linear-gradient(145deg, #171c23, #0c0f14); box-shadow: 0 34px 100px rgba(0,0,0,.65); transform: translateY(14px) scale(.97); transition: transform .35s var(--ease); }
+    .result-modal.open .result-card { transform: none; }
+    .result-symbol { width: 72px; height: 72px; margin: 0 auto 18px; display: grid; place-items: center; border-radius: 24px; color: #0d1308; background: var(--success); }
+    .result-symbol.loss { color: white; background: var(--danger); }
+    .result-symbol .icon { width: 34px; height: 34px; stroke-width: 2.2; }
+    .result-card p { color: var(--muted); }
+    .result-modal.open .result-symbol { animation: result-impact .58s cubic-bezier(.2,1.35,.35,1) both; }
+    .result-modal.outcome-win .result-card { border-color: rgba(98,216,157,.34); box-shadow: 0 34px 100px rgba(0,0,0,.65), 0 0 54px rgba(98,216,157,.09); }
+    .result-modal.outcome-loss .result-card { border-color: rgba(255,83,104,.3); box-shadow: 0 34px 100px rgba(0,0,0,.65), 0 0 54px rgba(255,53,79,.08); }
+    @keyframes result-halo { 0% { opacity: 0; transform: scale(.45); } 38% { opacity: 1; } 100% { opacity: .28; transform: scale(1.15); } }
+    @keyframes result-impact { 0% { opacity: 0; transform: scale(.42) rotate(-9deg); } 62% { opacity: 1; transform: scale(1.09) rotate(2deg); } 100% { transform: none; } }
+
+    @media (max-width: 1100px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
+      .upgrade-main { grid-template-columns: 1fr 240px 1fr; }
+      .picker-grid { grid-template-columns: repeat(2, 1fr); }
+      .profile-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 820px) {
+      .shell { width: min(100% - 24px, var(--container)); }
+      .header-row { min-height: 70px; grid-template-columns: auto 1fr auto; gap: 12px; }
+      .header-row .search-wrap { grid-column: 1 / -1; grid-row: 2; margin-bottom: 12px; }
+      .header-actions .profile-header { display: none; }
+      main { padding-top: 24px; }
+      .catalog-hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-art { display: none; }
+      .quick-row { grid-template-columns: repeat(2, 1fr); }
+      .filter-bar { grid-template-columns: 1fr 1fr; }
+      .filter-bar .result-count { grid-column: 1 / -1; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .cart-layout { grid-template-columns: 1fr; }
+      .summary { position: static; }
+      .upgrade-main { grid-template-columns: 1fr 1fr; }
+      .source-slot { grid-column: 1; grid-row: 2; }
+      .target-slot { grid-column: 2; grid-row: 2; }
+      .chance-column { display: contents; }
+      .chance-wheel { grid-column: 1 / -1; grid-row: 1; }
+      .upgrade-btn { grid-column: 1 / -1; grid-row: 3; }
+      .picker-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .picker-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); max-height: none; }
+      .inventory-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      :root { --nav-h: 70px; }
+      .brand { font-size: 18px; }
+      .brand-mark { width: 36px; height: 36px; }
+      .header-actions { gap: 7px; }
+      .header-actions .ghost-btn { display: none; }
+      .page-head { align-items: flex-start; flex-direction: column; }
+      .catalog-hero { padding: 24px 20px; border-radius: 22px; }
+      .quick-row { gap: 8px; }
+      .quick-card { padding: 13px; min-height: 82px; }
+      .filter-bar { grid-template-columns: 1fr; }
+      .filter-bar .result-count { grid-column: auto; }
+      .products-grid { gap: 10px; }
+      .product-info { padding: 12px; }
+      .product-name { min-height: 38px; font-size: 14px; }
+      .product-desc { display: none; }
+      .product-foot { margin-top: 10px; }
+      .price { font-size: 15px; }
+      .add-btn { width: 44px; min-height: 44px; }
+      .cart-item { grid-template-columns: 62px minmax(0, 1fr); }
+      .cart-thumb { width: 62px; }
+      .cart-side { grid-column: 2; flex-wrap: wrap; justify-content: space-between; }
+      .product-modal { padding: 0; place-items: end stretch; }
+      .product-dialog { width: 100%; max-height: 92dvh; border-width: 1px 0 0; border-radius: 26px 26px 0 0; transform: translateY(28px); }
+      .product-dialog-head { min-height: 180px; }
+      .product-dialog-body { padding: 20px 16px; }
+      .flavor-row { padding-left: 13px; gap: 8px; }
+      .quantity-control { grid-template-columns: 36px 28px 36px; }
+      .quantity-control button { width: 36px; height: 38px; }
+      .product-dialog-foot { grid-template-columns: 1fr; }
+      .product-add-selected { width: 100%; min-width: 0; }
+      .upgrade-stage { padding: 14px; border-radius: 22px; }
+      .upgrade-main { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .source-slot { grid-column: 1; grid-row: 2; }
+      .target-slot { grid-column: 2; grid-row: 2; }
+      .upgrade-slot { min-height: 220px; padding: 10px; border-radius: 17px; }
+      .slot-label { font-size: 11px; }
+      .chance-column { display: contents; }
+      .chance-wheel { grid-column: 1 / -1; grid-row: 1; width: 210px; margin-bottom: 10px; }
+      .upgrade-btn { grid-column: 1 / -1; grid-row: 3; margin-top: 4px; }
+      .selected-product { padding: 8px 2px; }
+      .selected-product img { width: min(88%, 120px); height: 104px; }
+      .selected-product h3 { margin: 8px 0 4px; font-size: 14px; line-height: 1.25; overflow-wrap: anywhere; }
+      .selected-product .price { font-size: 14px; }
+      .selected-product .empty-icon { width: 44px; height: 44px; margin-bottom: 10px; border-radius: 13px; }
+      .selected-product .telegram { font-size: 11px; }
+      .source-stack-art { min-height: 104px; padding-left: 16px; }
+      .source-stack-art img { width: min(58%, 100px); height: 96px; margin-left: -16px; padding: 4px; border-radius: 13px; }
+      .source-stack h3 { margin: 8px 0 4px; font-size: 14px; }
+      .source-stack-names { margin: 4px auto; font-size: 10px; line-height: 1.3; }
+      .picker-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .picker-panel { padding: 10px; }
+      .picker-heading { align-items: stretch; flex-direction: column; }
+      .picker-heading h3, .picker-panel > h3 { font-size: 16px; }
+      .picker-heading p { font-size: 12px; }
+      .picker-source-switch { width: 100%; }
+      .picker-source-switch button { flex: 1; min-height: 44px; }
+      .upgrade-cart-button { left: 14px; bottom: calc(var(--nav-h) + 24px + env(safe-area-inset-bottom)); height: 54px; border-radius: 17px; }
+      .purchase-sheet { padding: 20px; border-radius: 24px; }
+      .picker-tools { grid-template-columns: 1fr; }
+      .picker-grid { grid-template-columns: 1fr; }
+      .picker-card { padding: 8px; }
+      .upgrade-stage.is-catalog-mode .picker-card { padding: 6px; border-radius: 12px; }
+      .upgrade-stage.is-catalog-mode .picker-card img { max-height: 82px; aspect-ratio: 1.45; }
+      .upgrade-stage.is-catalog-mode .picker-card strong { margin-top: 5px; font-size: 12px; }
+      .upgrade-stage.is-catalog-mode .picker-card span { font-size: 12px; }
+      .profile-grid, .profile-grid > *, .profile-person, .profile-person > div, .inventory-card { min-width: 0; }
+      .profile-person h2 { overflow-wrap: anywhere; }
+      .profile-card, .inventory-panel, .history { padding: 18px; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .inventory-grid { grid-template-columns: repeat(2, 1fr); }
+      .inventory-actions { grid-template-columns: 1fr; }
+      .inventory-actions .soft-btn, .inventory-actions .ghost-btn { width: 100%; min-height: 44px; }
+      .admin-form { grid-template-columns: 1fr; padding: 0 16px 18px; }
+      .admin-product-row { grid-template-columns: 42px minmax(0,1fr) auto auto; }
+      .admin-product-row img { width: 42px; height: 42px; }
+      .admin-product-row .admin-stock { grid-column: 2; }
+      .field.full { grid-column: auto; }
+      .nav-btn { flex-direction: column; gap: 2px; font-size: 11px; }
+      .nav-btn .icon { width: 20px; height: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+
+    @media (prefers-reduced-transparency: reduce) {
+      .app-header, .bottom-nav, .panel { backdrop-filter: none; background: #121319; }
+    }
+
+    @media (prefers-contrast: more) {
+      :root { --line: rgba(255,255,255,.24); --line-strong: rgba(255,255,255,.4); --muted: #d0ccd2; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <header class="app-header">
+    <div class="shell header-row">
+      <a class="brand" href="#catalog" data-route="catalog" aria-label="VAPE LVL — каталог">
+        <span class="brand-mark" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M5 6h14l-2 12H7L5 6Z"/><path d="M9 6V3h6v3M9 10h6M10 14h4"/></svg>
+        </span>
+        <span>VAPE <span>LVL</span></span>
+      </a>
+
+      <div class="search-wrap">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <label class="sr-only" for="global-search" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Поиск товара</label>
+        <input id="global-search" class="search-input" type="search" placeholder="Найти вкус, устройство или бренд" autocomplete="off">
+      </div>
+
+      <div class="header-actions">
+        <button class="icon-btn" type="button" data-route="cart" aria-label="Открыть корзину">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.3a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20 8H7"/><circle cx="10" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
+          <span class="badge" id="cart-badge">0</span>
+        </button>
+        <button class="ghost-btn profile-header" type="button" data-route="profile">
+          <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          Профиль
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="shell" tabindex="-1">
+    <section id="view-catalog" class="view active" aria-labelledby="catalog-title">
+      <div class="catalog-hero">
+        <div class="hero-copy">
+          <span class="eyebrow">VAPE LVL / новая коллекция</span>
+          <h1 id="catalog-title">Выбери свой следующий уровень</h1>
+          <p>Устройства, жидкости и аксессуары в одном аккуратном каталоге. Купи товар или используй его в апгрейде.</p>
+          <div class="hero-actions">
+            <button class="primary-btn" type="button" data-scroll-products>Смотреть товары</button>
+            <button class="ghost-btn" type="button" data-route="upgrade">Открыть апгрейд</button>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true"><span class="orbit"></span><span class="float-product"></span></div>
+      </div>
+
+      <div class="quick-row" aria-label="Быстрый выбор">
+        <button class="quick-card active" type="button" data-quick="all"><span class="quick-title"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M12 3c2 4-2 5-2 8 0 1.7 1.3 3 3 3 2.7 0 4-3 3-6 3 2 5 5 5 8a8 8 0 1 1-16 0c0-4 2-7 7-13Z"/></svg>Хиты</span><small>Самое популярное</small></button>
+        <button class="quick-card" type="button" data-quick="high"><span class="quick-title"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M12 3v18M17 7.5c0-1.9-2.2-3.5-5-3.5S7 5.6 7 7.5s2.2 3.5 5 3.5 5 1.6 5 3.5-2.2 3.5-5 3.5-5-1.6-5-3.5"/></svg>Премиум</span><small>От 2 000 ₽</small></button>
+        <button class="quick-card" type="button" data-quick="budget"><span class="quick-title"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="m13 2-9 12h8l-1 8 9-12h-8l1-8Z"/></svg>До 1 500 ₽</span><small>Быстрый выбор</small></button>
+        <button class="quick-card" type="button" data-quick="pod"><span class="quick-title"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M8 4h8v3H8zM6 7h12v14H6z"/></svg>POD-системы</span><small>Устройства</small></button>
+      </div>
+
+      <div class="filter-bar" id="products-anchor">
+        <div class="result-count" id="result-count">Найдено 0 товаров</div>
+        <select class="select" id="category-filter" aria-label="Категория товара"><option value="all">Все категории</option></select>
+        <select class="select" id="sort-filter" aria-label="Сортировка товаров"><option value="popular">Сначала популярные</option><option value="price-asc">Сначала дешевле</option><option value="price-desc">Сначала дороже</option><option value="name">По названию</option></select>
+      </div>
+      <div class="products-grid" id="products-grid"></div>
+    </section>
+
+    <section id="view-cart" class="view" aria-labelledby="cart-title">
+      <div class="page-head"><div><span class="eyebrow">Ваш заказ</span><h1 id="cart-title">Корзина</h1><p class="page-subtitle">После оплаты товары появятся в профиле и станут доступны для апгрейда.</p></div></div>
+      <div class="cart-layout">
+        <div class="panel"><div class="panel-head"><h2>Товары</h2><span id="cart-count-label" class="telegram">0 позиций</span></div><div class="cart-list" id="cart-list"></div></div>
+        <aside class="panel summary" aria-label="Итого по заказу">
+          <h2>Итого</h2>
+          <div class="summary-row"><span>Товары</span><strong id="subtotal">0 ₽</strong></div>
+          <div class="summary-row"><span>Доставка</span><strong>Бесплатно</strong></div>
+          <div class="summary-row summary-total"><span>К оплате</span><strong id="total">0 ₽</strong></div>
+          <button class="primary-btn wide" id="checkout-btn" type="button">Купить товары</button>
+          <a class="ghost-btn wide manager-link" id="cart-manager-link" target="_blank" rel="noopener" href="https://t.me/xw_shked">Написать менеджеру</a>
+        </aside>
+      </div>
+    </section>
+
+    <section id="view-upgrade" class="view" aria-labelledby="upgrade-title">
+      <div class="upgrade-stage">
+        <div class="upgrade-head"><span class="eyebrow">VAPE LVL / Upgrade</span><h1 id="upgrade-title">Апгрейд товара</h1></div>
+        <div class="upgrade-main">
+          <article class="upgrade-slot source-slot">
+            <div class="slot-label"><span>Исходный товар</span></div>
+            <div class="selected-product" id="selected-source"></div>
+          </article>
+
+          <div class="chance-column">
+            <div class="chance-wheel" id="chance-wheel" aria-label="Вероятность успешного апгрейда">
+              <div class="needle-wrap" id="needle-wrap"><span class="needle"></span></div>
+              <div class="chance-copy"><span class="chance-number" id="chance-number">—</span><span class="chance-caption">шанс успеха</span></div>
+            </div>
+            <button class="primary-btn upgrade-btn" id="upgrade-btn" type="button" disabled>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 11 5-5 5 5M7 17l5-5 5 5"/></svg>Апгрейд
+            </button>
+          </div>
+
+          <article class="upgrade-slot target-slot"><div class="slot-label"><span>Желаемый товар</span></div><div class="selected-product" id="selected-target"></div></article>
+        </div>
+
+        <div class="picker-columns">
+          <section class="panel picker-panel" aria-labelledby="source-picker-title">
+            <div class="picker-heading">
+              <div><h3 id="source-picker-title">Выберите исходный товар</h3><p>Купите новый или возьмите уже оплаченный из профиля</p></div>
+              <div class="source-switch picker-source-switch" role="group" aria-label="Какие исходные товары показать"><button type="button" data-source-mode="catalog">Купить <span class="mode-count" data-catalog-count>0</span></button><button class="active" type="button" data-source-mode="inventory">Мои <span class="mode-count" data-inventory-count>0</span></button></div>
+            </div>
+            <div class="picker-tools"><input class="input" id="source-search" type="search" placeholder="Поиск по названию" aria-label="Поиск исходного товара"><select class="select" id="source-price" aria-label="Цена исходного товара"><option value="all">Любая цена</option><option value="0-1000">до 1 000 ₽</option><option value="1000-2000">1 000–2 000 ₽</option><option value="2000-999999">от 2 000 ₽</option></select></div>
+            <div class="picker-grid" id="source-grid"></div>
+          </section>
+          <section class="panel picker-panel" aria-labelledby="target-picker-title">
+            <h3 id="target-picker-title">Выберите цель</h3>
+            <div class="picker-tools"><input class="input" id="target-search" type="search" placeholder="Поиск по названию" aria-label="Поиск целевого товара"><select class="select" id="target-price" aria-label="Цена целевого товара"><option value="all">Любая цена</option><option value="0-2000">до 2 000 ₽</option><option value="2000-4000">2 000–4 000 ₽</option><option value="4000-999999">от 4 000 ₽</option></select></div>
+            <div class="picker-grid" id="target-grid"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-profile" class="view" aria-labelledby="profile-title">
+      <div class="page-head"><div><span class="eyebrow">Личный кабинет</span><h1 id="profile-title">Профиль</h1></div></div>
+      <div class="profile-grid">
+        <aside class="panel profile-card">
+          <div class="profile-person"><div class="avatar" aria-label="Аватар пользователя">VS</div><div><h2 style="margin:0;font-size:24px">Vape Shopper</h2><a class="telegram" href="https://t.me/xw_shked" target="_blank" rel="noopener">@xw_shked</a></div></div>
+          <div class="balance-card"><span>Демо-баланс</span><strong id="profile-balance">0 ₽</strong><a class="primary-btn wide" href="https://t.me/xw_shked?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%BF%D0%BE%D0%BB%D0%BD%D0%B8%D1%82%D1%8C%20%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81" target="_blank" rel="noopener">Пополнить через менеджера</a></div>
+          <div class="stats-grid"><div class="stat"><strong id="stat-items">0</strong><span>товаров</span></div><div class="stat"><strong id="stat-upgrades">0</strong><span>апгрейдов</span></div><div class="stat"><strong id="stat-wins">0%</strong><span>успешных</span></div></div>
+        </aside>
+
+        <section class="panel inventory-panel" aria-labelledby="inventory-title"><div class="panel-head" style="padding:0 0 16px"><div><h2 id="inventory-title">Мои товары</h2><span class="telegram">Доступны для вывода и апгрейда</span></div></div><div class="inventory-grid" id="inventory-grid"></div></section>
+      </div>
+
+      <section class="panel history" aria-labelledby="history-title"><h2 id="history-title">История апгрейдов</h2><div class="history-list" id="history-list"></div></section>
+
+      <details class="panel admin" id="admin-panel" data-admin-only hidden>
+        <summary>Управление ассортиментом <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></summary>
+        <form class="admin-form" id="product-form">
+          <div class="admin-product-list" id="admin-product-list" aria-label="Добавленные товары"></div>
+          <input id="product-edit-id" name="editId" type="hidden">
+          <div class="field"><label for="product-name">Название *</label><input class="input" id="product-name" name="name" required placeholder="Например, Husky Mint"></div>
+          <div class="field"><label for="product-price">Цена, ₽ *</label><input class="input" id="product-price" name="price" required type="number" min="1" step="1" inputmode="numeric" placeholder="1490"></div>
+          <div class="field"><label for="product-category">Категория *</label><select class="select" id="product-category" name="category" required><option value="Одноразовые">Одноразовые</option><option value="Жидкости">Жидкости</option><option value="POD-системы">POD-системы</option><option value="Снюс">Снюс</option><option value="Аксессуары">Аксессуары</option></select></div>
+          <div class="field"><label for="product-stock">Общее наличие *</label><input class="input" id="product-stock" name="stock" required placeholder="Например, 12 или на заказ"><p class="form-help">Введите количество либо «на заказ».</p></div>
+          <div class="field"><label for="product-image-url">Ссылка на фото</label><input class="input" id="product-image-url" name="imageUrl" type="url" placeholder="https://..."></div>
+          <div class="field full"><label for="product-description">Описание *</label><textarea class="textarea" id="product-description" name="description" required placeholder="Короткое описание товара"></textarea></div>
+          <div class="field full"><label for="product-flavors">Вкусы / варианты *</label><textarea class="textarea" id="product-flavors" name="flavors" required placeholder="Арбузный лёд | 4&#10;Киви маракуйя | на заказ"></textarea><p class="form-help">Один вариант на строку: название | количество. Вместо количества можно написать «на заказ».</p></div>
+          <div class="field full"><label for="product-image-file">Или загрузите фото с устройства</label><input class="input file-input" id="product-image-file" name="imageFile" type="file" accept="image/*"><p class="form-help">В этой версии товар живёт до обновления страницы. При переносе в Telegram Web App массив можно заменить API.</p></div>
+          <div class="field full" style="display:flex;gap:10px;flex-wrap:wrap"><button class="primary-btn" id="product-submit" type="submit">Добавить товар во все разделы</button><button class="ghost-btn" id="product-edit-cancel" type="button" hidden>Отменить редактирование</button></div>
+        </form>
+      </details>
+    </section>
+  </main>
+
+  <button class="upgrade-cart-button" id="upgrade-cart-button" type="button" aria-label="Открыть корзину покупки товаров для апгрейда">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.3a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20 8H7"/><circle cx="10" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
+    <span>Купить</span><span class="badge" id="upgrade-cart-count">0</span>
+  </button>
+
+  <nav class="bottom-nav" aria-label="Основная навигация">
+    <button class="nav-btn active" type="button" data-route="catalog" aria-current="page"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg><span>Каталог</span></button>
+    <button class="nav-btn" type="button" data-route="cart"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.3a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20 8H7"/><circle cx="10" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg><span>Корзина</span></button>
+    <button class="nav-btn" type="button" data-route="upgrade"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 11 5-5 5 5M7 17l5-5 5 5"/></svg><span>Апгрейд</span></button>
+    <button class="nav-btn" type="button" data-route="profile"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Профиль</span></button>
+  </nav>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span id="toast-text"></span></div>
+
+  <div class="product-modal" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="product-modal-title" aria-hidden="true">
+    <section class="product-dialog" id="product-dialog">
+      <div class="product-dialog-head" id="product-dialog-head">
+        <span class="stock-badge" id="product-modal-stock"></span>
+        <img id="product-modal-image" src="" alt="" width="480" height="310">
+        <button class="icon-btn product-close" id="product-modal-close" type="button" aria-label="Закрыть выбор вкусов"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="product-dialog-body">
+        <div class="product-dialog-copy"><span class="eyebrow" id="product-modal-category"></span><h2 id="product-modal-title">Товар</h2><p id="product-modal-description"></p></div>
+        <span class="variant-label">Выберите вкусы и количество</span>
+        <div class="flavor-list" id="flavor-list"></div>
+      </div>
+      <div class="product-dialog-foot">
+        <div class="dialog-total"><span id="product-modal-selected">Выбрано: 0</span><strong id="product-modal-total">0 ₽</strong></div>
+        <button class="primary-btn product-add-selected" id="product-add-selected" type="button" disabled>Выберите вкус</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="purchase-modal" id="purchase-modal" role="dialog" aria-modal="true" aria-labelledby="purchase-title" aria-hidden="true">
+    <section class="purchase-sheet">
+      <div class="purchase-sheet-head"><div><span class="eyebrow">Покупка для апгрейда</span><h2 id="purchase-title">Выбранные товары</h2></div><button class="icon-btn" id="purchase-close" type="button" aria-label="Закрыть корзину"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+      <div class="purchase-items" id="purchase-items"></div>
+      <div class="purchase-total"><span>Итого</span><strong id="purchase-total">0 ₽</strong></div>
+      <button class="primary-btn wide" id="purchase-pay" type="button">Оплатить и перенести в «Мои»</button>
+    </section>
+  </div>
+
+  <div class="result-modal" id="result-modal" role="dialog" aria-modal="true" aria-labelledby="result-title" aria-hidden="true">
+    <div class="result-card"><div class="result-symbol" id="result-symbol"></div><h2 id="result-title">Результат</h2><p id="result-text"></p><button class="primary-btn wide" id="result-close" type="button">Продолжить</button></div>
+  </div>
+
+  <script>
+    'use strict';
+
+    // ================================================================
+    // КОНФИГУРАЦИЯ ПРОТОТИПА.
+    // demoAdmin используется только для локальной демонстрации интерфейса.
+    // В Telegram Web App роль НЕЛЬЗЯ получать из query string, localStorage
+    // или объекта на клиенте. Backend обязан проверить подпись initData,
+    // срок auth_date и Telegram user.id, затем вернуть серверную роль.
+    // Все операции добавления/редактирования/удаления должны повторно
+    // проверять роль на API; клиентские флаги не являются авторизацией.
+    // ================================================================
+    const APP_CONFIG = Object.freeze({
+      demoAdmin: false,
+      maxUpgradeItems: 3,
+      upgradeRtp: 0.4,
+      maxDisplayedUpgradeChance: 80,
+      streakProtectionLosses: 5,
+      streakProtectionChance: 0.7,
+      streakProtectionMinDisplayedChance: 35,
+      cashbackMinLoss: 1000,
+      cashbackRecoveryRate: 0.6,
+      cashbackLifetimeLimit: 20,
+      pityIncrement: 0.05,
+      pityChanceCap: 0.4,
+      pityExpiryRounds: 3,
+      patientClickDelayMs: 2000,
+      patientClickBonus: 0.02,
+      patientClickChanceCap: 0.42,
+      maxImageBytes: 5 * 1024 * 1024
+    });
+
+    // ================================================================
+    // ЕДИНЫЙ ИСТОЧНИК ТОВАРОВ.
+    // Чтобы вручную изменить ассортимент, редактируйте объекты ниже.
+    // Любая новая позиция автоматически используется каталогом и апгрейдом.
+    // Поля: id, name, category, price, description, image, popular, tone,
+    // stock (число или 'order') и flavors [{ id, name, stock }].
+    // ================================================================
+    const PRODUCTS = [
+      { id: 1, name: 'Husky Mint Frost', category: 'Жидкости', price: 590, description: 'Холодная линейка, 30 мл', image: '', popular: 10, tone: '#19333a', stock: 18, flavors: [{id:'mint',name:'Ледяная мята',stock:7},{id:'berries',name:'Северные ягоды',stock:5},{id:'melon',name:'Дыня со льдом',stock:6}] },
+      { id: 2, name: 'DarkSide Core', category: 'Жидкости', price: 790, description: 'Насыщенная линейка, 30 мл', image: '', popular: 9, tone: '#35202c', stock: 11, flavors: [{id:'cola',name:'Кола со льдом',stock:4},{id:'cherry',name:'Вишнёвый морс',stock:3},{id:'grape',name:'Тёмный виноград',stock:4}] },
+      { id: 3, name: 'Pablo Ice Cold', category: 'Снюс', price: 890, description: 'Никотиновые паучи, 20 порций', image: '', popular: 8, tone: '#1c3029', stock: 'order', flavors: [{id:'ice',name:'Ice Cold',stock:'order'},{id:'berry',name:'Berry',stock:'order'}] },
+      { id: 4, name: 'Elf Bar BC 5000', category: 'Одноразовые', price: 1190, description: 'До 5000 затяжек, мягкая тяга', image: '', popular: 10, tone: '#302540', stock: 13, flavors: [{id:'watermelon',name:'Арбузный лёд',stock:4},{id:'kiwi',name:'Киви маракуйя',stock:3},{id:'blueberry',name:'Черника малина',stock:6}] },
+      { id: 5, name: 'Lost Mary MO5000', category: 'Одноразовые', price: 1390, description: 'Яркие вкусы и компактный корпус', image: '', popular: 9, tone: '#27351e', stock: 9, flavors: [{id:'guava',name:'Киви маракуйя гуава',stock:3},{id:'strawberry',name:'Клубника киви',stock:4},{id:'lemon',name:'Лимонный лайм',stock:2}] },
+      { id: 6, name: 'Brusko Minican 4', category: 'POD-системы', price: 1590, description: 'Компактная POD-система', image: '', popular: 8, tone: '#24323e', stock: 6, flavors: [{id:'black',name:'Чёрный',stock:3},{id:'silver',name:'Серебристый',stock:2},{id:'red',name:'Красный',stock:1}] },
+      { id: 7, name: 'Voopoo Argus Z2', category: 'POD-системы', price: 1890, description: 'Надёжный корпус и мягкая тяга', image: '', popular: 7, tone: '#3b2d1f', stock: 'order', flavors: [{id:'black',name:'Чёрный',stock:'order'},{id:'navy',name:'Тёмно-синий',stock:'order'}] },
+      { id: 8, name: 'Smoant Charon Baby', category: 'POD-системы', price: 2290, description: 'Карбоновая панель, 750 мА·ч', image: '', popular: 9, tone: '#202c3b', stock: 5, flavors: [{id:'carbon',name:'Carbon Black',stock:3},{id:'blue',name:'Blue Pattern',stock:2}] },
+      { id: 9, name: 'Vaporesso XROS 4', category: 'POD-системы', price: 2790, description: 'Точная настройка мощности', image: '', popular: 10, tone: '#26352e', stock: 8, flavors: [{id:'black',name:'Чёрный',stock:4},{id:'silver',name:'Серебристый',stock:2},{id:'lilac',name:'Лиловый',stock:2}] },
+      { id: 10, name: 'GeekVape Wenax Q Pro', category: 'POD-системы', price: 3290, description: 'Премиальный экран и виброотклик', image: '', popular: 8, tone: '#33283b', stock: 4, flavors: [{id:'black',name:'Чёрный',stock:2},{id:'violet',name:'Фиолетовый',stock:2}] },
+      { id: 11, name: 'Voopoo Drag S2', category: 'POD-системы', price: 3990, description: 'Мощное устройство на каждый день', image: '', popular: 9, tone: '#3a2b25', stock: 'order', flavors: [{id:'gray',name:'Серый металл',stock:'order'},{id:'brown',name:'Коричневая кожа',stock:'order'}] },
+      { id: 12, name: 'GeekVape Aegis Hero', category: 'POD-системы', price: 4690, description: 'Защищённый корпус и большой ресурс', image: '', popular: 7, tone: '#243337', stock: 3, flavors: [{id:'black',name:'Чёрный',stock:2},{id:'orange',name:'Оранжевый',stock:1}] },
+      { id: 13, name: 'Vaporesso Luxe XR Max', category: 'POD-системы', price: 5290, description: 'Высокая мощность и большой экран', image: '', popular: 8, tone: '#302943', stock: 4, flavors: [{id:'black',name:'Чёрный',stock:2},{id:'silver',name:'Серебристый',stock:2}] },
+      { id: 14, name: 'Dotmod DotAIO V2', category: 'POD-системы', price: 6990, description: 'Флагманская система в металле', image: '', popular: 6, tone: '#3d3021', stock: 'order', flavors: [{id:'frost',name:'Frost',stock:'order'},{id:'royal',name:'Royal Blue',stock:'order'}] },
+      { id: 15, name: 'Coil Tool Kit', category: 'Аксессуары', price: 990, description: 'Комплект для обслуживания', image: '', popular: 5, tone: '#252b33', stock: 7, flavors: [{id:'base',name:'Стандартный комплект',stock:7}] },
+      { id: 16, name: 'Premium Carry Case', category: 'Аксессуары', price: 2490, description: 'Защитный кейс для устройства', image: '', popular: 6, tone: '#30272a', stock: 5, flavors: [{id:'black',name:'Чёрный',stock:3},{id:'graphite',name:'Графитовый',stock:2}] }
+    ];
+
+    const ICONS = {
+      check: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>',
+      close: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+      plus: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
+      minus: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>',
+      cart: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.3a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20 8H7"/><circle cx="10" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>',
+      trash: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/></svg>'
+    };
+
+    const BONUS_STORAGE_KEY = 'vape-lvl-upgrade-bonuses-v1';
+
+    function defaultUpgradeBonuses() {
+      return {
+        consecutiveLosses: 0,
+        pityBonus: 0,
+        pityRoundsSinceHighChanceLoss: 0,
+        cashbackActivations: 0,
+        cashbackLastActivationDay: '',
+        cashbackOffer: null
+      };
+    }
+
+    function localDayKey(date = new Date()) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+
+    function loadUpgradeBonuses() {
+      const defaults = defaultUpgradeBonuses();
+      try {
+        const stored = JSON.parse(localStorage.getItem(BONUS_STORAGE_KEY) || 'null');
+        if (!stored || typeof stored !== 'object') return defaults;
+        const bonuses = {
+          consecutiveLosses: Math.max(0, Math.floor(Number(stored.consecutiveLosses) || 0)),
+          pityBonus: Math.max(0, Number(stored.pityBonus) || 0),
+          pityRoundsSinceHighChanceLoss: Math.max(0, Math.floor(Number(stored.pityRoundsSinceHighChanceLoss) || 0)),
+          cashbackActivations: Math.min(APP_CONFIG.cashbackLifetimeLimit, Math.max(0, Math.floor(Number(stored.cashbackActivations) || 0))),
+          cashbackLastActivationDay: typeof stored.cashbackLastActivationDay === 'string' ? stored.cashbackLastActivationDay : '',
+          cashbackOffer: stored.cashbackOffer && typeof stored.cashbackOffer === 'object' ? {
+            lossValue: Math.max(0, Number(stored.cashbackOffer.lossValue) || 0),
+            maxRecoveryValue: Math.max(0, Number(stored.cashbackOffer.maxRecoveryValue) || 0),
+            createdDay: String(stored.cashbackOffer.createdDay || '')
+          } : null
+        };
+        if (bonuses.cashbackOffer?.createdDay !== localDayKey()) bonuses.cashbackOffer = null;
+        return bonuses;
+      } catch {
+        return defaults;
+      }
+    }
+
+    const state = {
+      route: 'catalog', cart: [], inventory: [6, 4], balance: 12000,
+      sourceMode: 'inventory', purchaseSelection: [], upgradeSelection: [1], targetId: 8,
+      upgrades: [], running: false, quick: 'all', isAdmin: APP_CONFIG.demoAdmin,
+      modalProductId: null, modalQuantities: {}, upgradeBonuses: loadUpgradeBonuses(),
+      roundSignature: '', roundOpenedAt: 0
+    };
+    let displayedChance = 0;
+    let chanceAnimationFrame = 0;
+
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+    const htmlRenderCache = new WeakMap();
+    function renderHtml(selector, markup) {
+      const element = $(selector);
+      if (!element || htmlRenderCache.get(element) === markup) return;
+      element.innerHTML = markup;
+      htmlRenderCache.set(element, markup);
+    }
+    const money = value => new Intl.NumberFormat('ru-RU').format(value) + ' ₽';
+    const productById = id => PRODUCTS.find(product => product.id === Number(id));
+    const escapeHtml = value => String(value).replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char]);
+    const isOrderStock = value => value === 'order';
+
+    function saveUpgradeBonuses() {
+      try {
+        localStorage.setItem(BONUS_STORAGE_KEY, JSON.stringify(state.upgradeBonuses));
+      } catch {
+        // В прототипе бонусы продолжают работать до обновления страницы.
+      }
+    }
+
+    function stockLabel(value) {
+      if (isOrderStock(value)) return 'На заказ';
+      const count = Math.max(0, Number(value) || 0);
+      return count > 0 ? `${count} шт` : 'Нет в наличии';
+    }
+
+    function stockClass(value) { return isOrderStock(value) ? ' order' : ''; }
+
+    function variantStock(product, flavor) {
+      const productLimit = isOrderStock(product.stock) ? Infinity : Number(product.stock) || 0;
+      const flavorLimit = isOrderStock(flavor.stock) ? Infinity : Number(flavor.stock) || 0;
+      const limit = Math.max(0, Math.min(productLimit, flavorLimit));
+      return limit === Infinity ? 'order' : limit;
+    }
+
+    function productArtwork(product) {
+      if (product.image) return product.image;
+      const type = product.category;
+      let shape = '';
+      if (type === 'Жидкости') shape = '<rect x="78" y="38" width="84" height="134" rx="22" fill="url(#b)"/><rect x="94" y="22" width="52" height="30" rx="8" fill="#d8e1e8"/><rect x="90" y="76" width="60" height="54" rx="12" fill="#10151b" opacity=".78"/><path d="M105 103h30" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".8"/>';
+      else if (type === 'Снюс') shape = '<ellipse cx="120" cy="78" rx="70" ry="25" fill="#dde6ea"/><path d="M50 78v54c0 14 31 26 70 26s70-12 70-26V78" fill="url(#b)"/><ellipse cx="120" cy="132" rx="70" ry="25" fill="#99a8af" opacity=".5"/><circle cx="120" cy="78" r="24" fill="#10151b" opacity=".8"/>';
+      else if (type === 'Аксессуары') shape = '<rect x="48" y="54" width="144" height="106" rx="26" fill="url(#b)"/><path d="M76 96h88M76 120h55" stroke="#e9eff2" stroke-width="10" stroke-linecap="round" opacity=".68"/>';
+      else if (type === 'Одноразовые') shape = '<rect x="93" y="28" width="54" height="150" rx="25" fill="url(#b)"/><rect x="105" y="17" width="30" height="24" rx="10" fill="#dce5e9"/><path d="M120 67v62" stroke="#10151b" stroke-width="10" stroke-linecap="round" opacity=".48"/>';
+      else shape = '<rect x="77" y="34" width="86" height="148" rx="28" fill="url(#b)"/><rect x="91" y="22" width="58" height="29" rx="9" fill="#dbe4e8"/><rect x="91" y="68" width="58" height="72" rx="16" fill="#10151b" opacity=".8"/><circle cx="120" cy="154" r="8" fill="#ff354f"/>';
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200"><defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4f7f9"/><stop offset=".45" stop-color="${product.tone || '#65717c'}"/><stop offset="1" stop-color="#252b31"/></linearGradient></defs>${shape}</svg>`;
+      return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    }
+
+    function productCard(product) {
+      const flavors = Array.isArray(product.flavors) ? product.flavors : [];
+      return `<button class="product-card" type="button" data-open-product="${product.id}" aria-label="Открыть ${escapeHtml(product.name)} и выбрать вариант">
+        <div class="product-media" style="--tone:${escapeHtml(product.tone || '#20262e')};--glow:${escapeHtml(product.tone || '#ff354f')}55">
+          <span class="product-chip">${escapeHtml(product.category)}</span>
+          <span class="stock-badge${stockClass(product.stock)}">${stockLabel(product.stock)}</span>
+          <img src="${escapeHtml(productArtwork(product))}" alt="${escapeHtml(product.name)}" width="320" height="270" loading="lazy">
+        </div>
+        <div class="product-info"><div class="product-category">${escapeHtml(product.category)}</div><div class="product-name">${escapeHtml(product.name)}</div><div class="product-desc">${escapeHtml(product.description)}</div><div class="product-flavors">${flavors.length} ${plural(flavors.length,'вариант','варианта','вариантов')}</div><div class="product-foot"><strong class="price">${money(product.price)}</strong><span class="primary-btn add-btn" aria-hidden="true">${ICONS.plus}</span></div></div>
+      </button>`;
+    }
+
+    function filteredProducts() {
+      const query = $('#global-search').value.trim().toLocaleLowerCase('ru');
+      const category = $('#category-filter').value;
+      const sort = $('#sort-filter').value;
+      let list = PRODUCTS.filter(product => {
+        const flavorNames = (product.flavors || []).map(flavor => flavor.name).join(' ');
+        const matchesQuery = `${product.name} ${product.description} ${product.category} ${flavorNames}`.toLocaleLowerCase('ru').includes(query);
+        const matchesCategory = category === 'all' || product.category === category;
+        const matchesQuick = state.quick === 'all' || (state.quick === 'high' && product.price >= 2000) || (state.quick === 'budget' && product.price <= 1500) || (state.quick === 'pod' && product.category === 'POD-системы');
+        return matchesQuery && matchesCategory && matchesQuick;
+      });
+      const sorts = { 'price-asc': (a,b) => a.price-b.price, 'price-desc': (a,b) => b.price-a.price, name: (a,b) => a.name.localeCompare(b.name,'ru'), popular: (a,b) => b.popular-a.popular };
+      return list.sort(sorts[sort]);
+    }
+
+    function renderCatalog() {
+      const list = filteredProducts();
+      $('#products-grid').innerHTML = list.length ? list.map(productCard).join('') : '<div class="panel empty-state" style="grid-column:1/-1">По вашему запросу ничего не найдено.</div>';
+      $('#result-count').textContent = `Найдено ${list.length} ${plural(list.length, 'товар', 'товара', 'товаров')}`;
+    }
+
+    function plural(number, one, few, many) {
+      const mod10 = number % 10, mod100 = number % 100;
+      if (mod10 === 1 && mod100 !== 11) return one;
+      if (mod10 >= 2 && mod10 <= 4 && !(mod100 >= 12 && mod100 <= 14)) return few;
+      return many;
+    }
+
+    function renderCategories() {
+      const current = $('#category-filter').value || 'all';
+      const options = [...new Set(PRODUCTS.map(product => product.category))];
+      $('#category-filter').innerHTML = '<option value="all">Все категории</option>' + options.map(item => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`).join('');
+      $('#category-filter').value = options.includes(current) ? current : 'all';
+    }
+
+    function removeFromCart(index) {
+      state.cart.splice(index, 1);
+      renderCart();
+      showToast('Позиция удалена из корзины');
+    }
+
+    function cartProductQuantity(productId, excludedIndex = -1) {
+      return state.cart.reduce((sum, item, index) => index === excludedIndex || item.productId !== productId ? sum : sum + item.quantity, 0);
+    }
+
+    function cartFlavorQuantity(productId, flavorId, excludedIndex = -1) {
+      return state.cart.reduce((sum, item, index) => index === excludedIndex || item.productId !== productId || item.flavorId !== flavorId ? sum : sum + item.quantity, 0);
+    }
+
+    function remainingForVariant(product, flavor, excludedIndex = -1) {
+      const productLeft = isOrderStock(product.stock) ? Infinity : Math.max(0, Number(product.stock) - cartProductQuantity(product.id, excludedIndex));
+      const flavorLeft = isOrderStock(flavor.stock) ? Infinity : Math.max(0, Number(flavor.stock) - cartFlavorQuantity(product.id, flavor.id, excludedIndex));
+      return Math.min(productLeft, flavorLeft);
+    }
+
+    function remainingForModal(product, flavor) {
+      const base = remainingForVariant(product, flavor);
+      if (base === Infinity) return Infinity;
+      const selectedOtherFlavors = Object.entries(state.modalQuantities).reduce((sum, [id, quantity]) => id === flavor.id ? sum : sum + Number(quantity || 0), 0);
+      const productRoom = isOrderStock(product.stock) ? Infinity : Math.max(0, Number(product.stock) - cartProductQuantity(product.id) - selectedOtherFlavors);
+      return Math.min(base, productRoom);
+    }
+
+    function openProductModal(productId) {
+      const product = productById(productId);
+      if (!product) return;
+      state.modalProductId = product.id;
+      state.modalQuantities = {};
+      renderProductModal();
+      $('#product-modal').classList.add('open');
+      $('#product-modal').setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      $('#product-modal-close').focus();
+    }
+
+    function closeProductModal() {
+      $('#product-modal').classList.remove('open');
+      $('#product-modal').setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      const trigger = $(`[data-open-product="${state.modalProductId}"]`);
+      state.modalProductId = null;
+      state.modalQuantities = {};
+      trigger?.focus();
+    }
+
+    function renderProductModal() {
+      const product = productById(state.modalProductId);
+      if (!product) return;
+      $('#product-dialog-head').style.setProperty('--dialog-tone', product.tone || '#29313c');
+      $('#product-modal-image').src = productArtwork(product);
+      $('#product-modal-image').alt = product.name;
+      $('#product-modal-category').textContent = product.category;
+      $('#product-modal-title').textContent = product.name;
+      $('#product-modal-description').textContent = product.description;
+      $('#product-modal-stock').textContent = stockLabel(product.stock);
+      $('#product-modal-stock').className = `stock-badge${stockClass(product.stock)}`;
+      const flavors = Array.isArray(product.flavors) ? product.flavors : [];
+      $('#flavor-list').innerHTML = flavors.map(flavor => {
+        const quantity = Number(state.modalQuantities[flavor.id]) || 0;
+        const remaining = remainingForModal(product, flavor);
+        const unavailable = remaining !== Infinity && remaining <= 0;
+        const status = remaining === Infinity ? 'На заказ' : remaining > 0 ? `В наличии ${remaining}` : 'Нет в наличии';
+        return `<div class="flavor-row${quantity ? ' selected' : ''}${unavailable ? ' unavailable' : ''}"><div class="flavor-copy"><strong>${escapeHtml(flavor.name)}</strong><span class="${remaining === Infinity ? 'order' : ''}">${money(product.price)} · ${status}</span></div><div class="quantity-control" aria-label="Количество ${escapeHtml(flavor.name)}"><button type="button" data-flavor-quantity="${escapeHtml(flavor.id)}" data-delta="-1" aria-label="Уменьшить количество ${escapeHtml(flavor.name)}" ${quantity <= 0 ? 'disabled' : ''}>${ICONS.minus}</button><output aria-live="polite">${quantity}</output><button type="button" data-flavor-quantity="${escapeHtml(flavor.id)}" data-delta="1" aria-label="Увеличить количество ${escapeHtml(flavor.name)}" ${unavailable || (remaining !== Infinity && quantity >= remaining) ? 'disabled' : ''}>${ICONS.plus}</button></div></div>`;
+      }).join('') || '<div class="empty-state"><p>Для этого товара пока не настроены варианты.</p></div>';
+      const selected = Object.values(state.modalQuantities).reduce((sum, value) => sum + Number(value || 0), 0);
+      $('#product-modal-selected').textContent = `Выбрано: ${selected}`;
+      $('#product-modal-total').textContent = money(product.price * selected);
+      $('#product-add-selected').disabled = selected === 0;
+      $('#product-add-selected').textContent = selected ? `В корзину · ${money(product.price * selected)}` : 'Выберите вкус';
+    }
+
+    function changeModalQuantity(flavorId, delta) {
+      const product = productById(state.modalProductId);
+      const flavor = product?.flavors?.find(item => item.id === flavorId);
+      if (!product || !flavor) return;
+      const current = Number(state.modalQuantities[flavorId]) || 0;
+      const remaining = remainingForModal(product, flavor);
+      const next = Math.max(0, remaining === Infinity ? current + delta : Math.min(remaining, current + delta));
+      state.modalQuantities[flavorId] = next;
+      renderProductModal();
+    }
+
+    function addSelectedVariantsToCart() {
+      const product = productById(state.modalProductId);
+      if (!product) return;
+      let added = 0;
+      product.flavors.forEach(flavor => {
+        const requested = Number(state.modalQuantities[flavor.id]) || 0;
+        if (requested <= 0) return;
+        const remaining = remainingForVariant(product, flavor);
+        const quantity = remaining === Infinity ? requested : Math.min(requested, remaining);
+        if (!quantity) return;
+        const existing = state.cart.find(item => item.productId === product.id && item.flavorId === flavor.id);
+        if (existing) existing.quantity += quantity;
+        else state.cart.push({ productId: product.id, flavorId: flavor.id, flavorName: flavor.name, quantity });
+        added += quantity;
+      });
+      if (!added) return showToast('Выберите доступный вариант');
+      closeProductModal();
+      renderCart();
+      showToast(`${added} ${plural(added,'товар','товара','товаров')} добавлено в корзину`);
+    }
+
+    function changeCartQuantity(index, delta) {
+      const item = state.cart[index];
+      const product = productById(item?.productId);
+      const flavor = product?.flavors?.find(entry => entry.id === item.flavorId);
+      if (!item || !product || !flavor) return;
+      if (delta < 0 && item.quantity <= 1) return removeFromCart(index);
+      const remainingWithoutLine = remainingForVariant(product, flavor, index);
+      const max = remainingWithoutLine === Infinity ? Infinity : remainingWithoutLine;
+      item.quantity = Math.max(1, max === Infinity ? item.quantity + delta : Math.min(max, item.quantity + delta));
+      renderCart();
+    }
+
+    function renderCart() {
+      state.cart = state.cart.filter(item => productById(item.productId) && item.quantity > 0);
+      const unitCount = state.cart.reduce((sum, item) => sum + item.quantity, 0);
+      $('#cart-badge').textContent = unitCount;
+      $('#cart-badge').hidden = unitCount === 0;
+      $('#cart-count-label').textContent = `${unitCount} ${plural(unitCount, 'товар', 'товара', 'товаров')}`;
+      $('#cart-list').innerHTML = state.cart.length ? state.cart.map((item, index) => { const product = productById(item.productId); const flavor = product.flavors.find(entry => entry.id === item.flavorId); const max = flavor ? remainingForVariant(product, flavor, index) : 0; return `<div class="cart-item"><div class="cart-thumb"><img src="${escapeHtml(productArtwork(product))}" alt="" width="78" height="78"></div><div class="cart-meta"><h3>${escapeHtml(product.name)}</h3><p>${escapeHtml(item.flavorName)} · ${escapeHtml(product.category)}</p></div><div class="cart-side"><div class="cart-quantity"><button type="button" data-cart-quantity="${index}" data-delta="-1" aria-label="Уменьшить количество">${ICONS.minus}</button><strong>${item.quantity}</strong><button type="button" data-cart-quantity="${index}" data-delta="1" aria-label="Увеличить количество" ${max !== Infinity && item.quantity >= max ? 'disabled' : ''}>${ICONS.plus}</button></div><strong class="price">${money(product.price * item.quantity)}</strong><button class="danger-btn remove-btn" type="button" data-remove-cart="${index}" aria-label="Удалить ${escapeHtml(product.name)}, ${escapeHtml(item.flavorName)}">${ICONS.trash}</button></div></div>`; }).join('') : '<div class="empty-state"><div class="empty-icon">' + ICONS.cart + '</div><h3>Корзина пока пуста</h3><p>Откройте карточку товара и выберите вкус — он появится здесь.</p><button class="ghost-btn" type="button" data-route="catalog">Перейти в каталог</button></div>';
+      const total = state.cart.reduce((sum, item) => sum + (productById(item.productId)?.price || 0) * item.quantity, 0);
+      $('#subtotal').textContent = money(total);
+      $('#total').textContent = money(total);
+      $('#checkout-btn').disabled = !state.cart.length || total > state.balance;
+      $('#checkout-btn').textContent = !state.cart.length ? 'Корзина пуста' : total > state.balance ? 'Недостаточно баланса' : 'Оформить заказ';
+      const orderLines = state.cart.map(item => `${productById(item.productId)?.name || 'Товар'} — ${item.flavorName}, ${item.quantity} шт.`).join('\n');
+      const text = encodeURIComponent(`Здравствуйте! Хочу оформить заказ VAPE LVL:\n${orderLines}\nИтого: ${money(total)}.`);
+      $('#cart-manager-link').href = `https://t.me/xw_shked?text=${text}`;
+    }
+
+    function checkout() {
+      const total = state.cart.reduce((sum, item) => sum + (productById(item.productId)?.price || 0) * item.quantity, 0);
+      if (!state.cart.length || total > state.balance) return;
+      const valid = state.cart.every((item, index) => { const product = productById(item.productId); const flavor = product?.flavors?.find(entry => entry.id === item.flavorId); const max = product && flavor ? remainingForVariant(product, flavor, index) : 0; return max === Infinity || item.quantity <= max; });
+      if (!valid) { renderCart(); return showToast('Остатки изменились — проверьте количество'); }
+      state.balance -= total;
+      state.cart.forEach(item => {
+        const product = productById(item.productId);
+        const flavor = product.flavors.find(entry => entry.id === item.flavorId);
+        if (!isOrderStock(product.stock)) product.stock = Math.max(0, product.stock - item.quantity);
+        if (!isOrderStock(flavor.stock)) flavor.stock = Math.max(0, flavor.stock - item.quantity);
+        state.inventory.push(...Array(item.quantity).fill(product.id));
+      });
+      state.cart = [];
+      renderAll();
+      showToast('Покупка завершена — товары уже в профиле');
+      navigate('profile');
+    }
+
+    function inPriceRange(product, range) {
+      if (range === 'all') return true;
+      const [min, max] = range.split('-').map(Number);
+      return product.price >= min && product.price <= max;
+    }
+
+    function selectedCatalogProducts() {
+      return state.purchaseSelection.map(productById).filter(Boolean);
+    }
+
+    function selectedInventoryEntries() {
+      return state.upgradeSelection
+        .filter(index => Number.isInteger(index) && index >= 0 && index < state.inventory.length)
+        .map(index => ({ index, product: productById(state.inventory[index]) }))
+        .filter(entry => entry.product);
+    }
+
+    function upgradeChance(sourceValue, target) {
+      if (!sourceValue || !target || target.price <= sourceValue) return 0;
+      return Math.min(99.9, sourceValue / target.price * APP_CONFIG.upgradeRtp * 100);
+    }
+
+    // Этот шанс используется только интерфейсом. Фактический шанс апгрейда
+    // по-прежнему рассчитывается в upgradeChance() с учётом текущего RTP.
+    function displayedUpgradeChance(sourceValue, target) {
+      if (!sourceValue || !target || target.price <= sourceValue) return 0;
+      return Math.min(APP_CONFIG.maxDisplayedUpgradeChance, sourceValue / target.price * 100);
+    }
+
+    function syncUpgradeRoundTimer(sourceEntries, target) {
+      const sourceKey = sourceEntries.map(entry => `${entry.index}:${entry.product.id}`).join(',');
+      const signature = `${state.sourceMode}|${sourceKey}|${target?.id || ''}`;
+      if (signature === state.roundSignature) return;
+      state.roundSignature = signature;
+      state.roundOpenedAt = Date.now();
+    }
+
+    function currentCashbackOffer() {
+      const offer = state.upgradeBonuses.cashbackOffer;
+      if (offer?.createdDay === localDayKey()) return offer;
+      if (offer) {
+        state.upgradeBonuses.cashbackOffer = null;
+        saveUpgradeBonuses();
+      }
+      return null;
+    }
+
+    function calculateActualRoundChance(sourceValue, target, clickedAt = Date.now()) {
+      const baseChance = upgradeChance(sourceValue, target) / 100;
+      const chanceWithPity = Math.min(APP_CONFIG.pityChanceCap, baseChance + state.upgradeBonuses.pityBonus);
+      const waitedLongEnough = state.roundOpenedAt > 0 && clickedAt - state.roundOpenedAt > APP_CONFIG.patientClickDelayMs;
+      return Math.min(
+        APP_CONFIG.patientClickChanceCap,
+        chanceWithPity + (waitedLongEnough ? APP_CONFIG.patientClickBonus : 0)
+      );
+    }
+
+    function resolveUpgradeOutcome(sourceValue, target, displayChance, clickedAt = Date.now(), random = Math.random) {
+      const actualChance = calculateActualRoundChance(sourceValue, target, clickedAt);
+      const baseWon = random() < actualChance;
+      const cashbackOffer = currentCashbackOffer();
+      const cashbackGuarantee = Boolean(cashbackOffer && target.price <= cashbackOffer.maxRecoveryValue);
+      const streakEligible = state.upgradeBonuses.consecutiveLosses >= APP_CONFIG.streakProtectionLosses
+        && displayChance > APP_CONFIG.streakProtectionMinDisplayedChance;
+      const streakGuarantee = streakEligible && random() < APP_CONFIG.streakProtectionChance;
+      return {
+        won: baseWon || cashbackGuarantee || streakGuarantee,
+        baseWon,
+        actualChance,
+        cashbackGuarantee,
+        streakGuarantee
+      };
+    }
+
+    function updateUpgradeBonusesAfterRound({ won, sourceValue, displayChance, cashbackGuarantee }) {
+      const bonuses = state.upgradeBonuses;
+      const today = localDayKey();
+
+      if (cashbackGuarantee) bonuses.cashbackOffer = null;
+      bonuses.consecutiveLosses = won ? 0 : bonuses.consecutiveLosses + 1;
+
+      if (won) {
+        bonuses.pityBonus = 0;
+        bonuses.pityRoundsSinceHighChanceLoss = 0;
+      } else if (displayChance >= APP_CONFIG.maxDisplayedUpgradeChance) {
+        bonuses.pityBonus += APP_CONFIG.pityIncrement;
+        bonuses.pityRoundsSinceHighChanceLoss = 0;
+      } else if (bonuses.pityBonus > 0) {
+        bonuses.pityRoundsSinceHighChanceLoss += 1;
+        if (bonuses.pityRoundsSinceHighChanceLoss >= APP_CONFIG.pityExpiryRounds) {
+          bonuses.pityBonus = 0;
+          bonuses.pityRoundsSinceHighChanceLoss = 0;
+        }
+      }
+
+      const canActivateCashback = !won
+        && sourceValue > APP_CONFIG.cashbackMinLoss
+        && bonuses.cashbackActivations < APP_CONFIG.cashbackLifetimeLimit
+        && bonuses.cashbackLastActivationDay !== today
+        && !bonuses.cashbackOffer;
+      if (canActivateCashback) {
+        bonuses.cashbackActivations += 1;
+        bonuses.cashbackLastActivationDay = today;
+        bonuses.cashbackOffer = {
+          lossValue: sourceValue,
+          maxRecoveryValue: sourceValue * APP_CONFIG.cashbackRecoveryRate,
+          createdDay: today
+        };
+      }
+
+      saveUpgradeBonuses();
+    }
+
+    function animateChanceNumber(chance) {
+      const number = $('#chance-number');
+      const wheel = $('#chance-wheel');
+      const target = Number.isFinite(chance) ? chance : 0;
+      const startValue = displayedChance;
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.cancelAnimationFrame(chanceAnimationFrame);
+      wheel.setAttribute('aria-label', target ? `Вероятность успешного апгрейда ${target.toFixed(1)} процента` : 'Вероятность станет доступна после выбора товаров');
+
+      if (reducedMotion || Math.abs(target - startValue) < 0.05) {
+        displayedChance = target;
+        number.textContent = target ? `${target.toFixed(1)}%` : '—';
+        return;
+      }
+
+      const startedAt = performance.now();
+      const duration = 460;
+      const update = now => {
+        const progress = Math.min(1, (now - startedAt) / duration);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        displayedChance = startValue + (target - startValue) * eased;
+        number.textContent = progress === 1 && !target ? '—' : `${displayedChance.toFixed(1)}%`;
+        if (progress < 1) chanceAnimationFrame = window.requestAnimationFrame(update);
+      };
+      chanceAnimationFrame = window.requestAnimationFrame(update);
+    }
+
+    function selectedProductsMarkup(products, placeholder) {
+      if (!products.length) return `<div><div class="empty-icon">${ICONS.cart}</div><h3>${placeholder}</h3><p class="telegram">${state.sourceMode === 'catalog' ? 'Добавляйте товары без ограничения количества' : `Можно выбрать до ${APP_CONFIG.maxUpgradeItems} товаров`}</p></div>`;
+      const total = products.reduce((sum, product) => sum + product.price, 0);
+      const preview = products.slice(0, APP_CONFIG.maxUpgradeItems);
+      return `<div class="source-stack"><div class="source-stack-art">${preview.map(product => `<img src="${escapeHtml(productArtwork(product))}" alt="${escapeHtml(product.name)}" width="150" height="156">`).join('')}</div><h3>${products.length} ${plural(products.length, 'товар', 'товара', 'товаров')}</h3><p class="source-stack-names">${products.slice(0, 3).map(product => escapeHtml(product.name)).join(' · ')}${products.length > 3 ? ` · ещё ${products.length - 3}` : ''}</p><strong class="price">${money(total)}</strong></div>`;
+    }
+
+    function selectedProductMarkup(product, placeholder) {
+      if (!product) return `<div><div class="empty-icon">${ICONS.cart}</div><h3>${placeholder}</h3><p class="telegram">Выберите карточку ниже</p></div>`;
+      return `<div><img src="${escapeHtml(productArtwork(product))}" alt="${escapeHtml(product.name)}" width="230" height="180"><h3>${escapeHtml(product.name)}</h3><strong class="price">${money(product.price)}</strong></div>`;
+    }
+
+    function renderUpgrade() {
+      state.upgradeSelection = state.upgradeSelection.filter(index => index >= 0 && index < state.inventory.length).slice(0, APP_CONFIG.maxUpgradeItems);
+      state.purchaseSelection = state.purchaseSelection.filter(id => productById(id));
+      $('.upgrade-stage').classList.toggle('is-catalog-mode', state.sourceMode === 'catalog');
+
+      const sourceEntries = selectedInventoryEntries();
+      const sources = state.sourceMode === 'inventory' ? sourceEntries.map(entry => entry.product) : selectedCatalogProducts();
+      const sourceValue = sources.reduce((sum, product) => sum + product.price, 0);
+      const targets = sourceValue ? PRODUCTS.filter(product => product.price > sourceValue) : [];
+      let target = productById(state.targetId);
+      if (!target || !targets.some(product => product.id === target.id)) {
+        target = targets[0] || null;
+        state.targetId = target?.id ?? null;
+      }
+      syncUpgradeRoundTimer(sourceEntries, target);
+
+      renderHtml('#selected-source', selectedProductsMarkup(sources, state.sourceMode === 'inventory' ? 'Выберите товары из профиля' : 'Выберите товары для покупки'));
+      renderHtml('#selected-target', selectedProductMarkup(target, sources.length ? 'Нет подходящей цели' : 'Сначала выберите исходные товары'));
+
+      const sourceQuery = $('#source-search').value.trim().toLocaleLowerCase('ru');
+      const sourceRange = $('#source-price').value;
+      let sourceCards = '';
+      if (state.sourceMode === 'catalog') {
+        const visible = PRODUCTS.filter(product => product.name.toLocaleLowerCase('ru').includes(sourceQuery) && inPriceRange(product, sourceRange));
+        sourceCards = visible.map(product => sourcePickerCard(product, 'catalog', product.id)).join('');
+      } else {
+        const visible = state.inventory.map((id, index) => ({ product: productById(id), index })).filter(entry => entry.product && entry.product.name.toLocaleLowerCase('ru').includes(sourceQuery) && inPriceRange(entry.product, sourceRange));
+        sourceCards = visible.map(entry => sourcePickerCard(entry.product, 'inventory', entry.index)).join('');
+      }
+      renderHtml('#source-grid', sourceCards || `<div class="empty-state" style="grid-column:1/-1"><h3>${state.sourceMode === 'inventory' ? 'В профиле пока нет подходящих товаров' : 'Нет подходящих товаров'}</h3><p>${state.sourceMode === 'inventory' ? 'Переключитесь на «Купить» и добавьте до трёх товаров.' : 'Измените фильтр цены или поисковый запрос.'}</p></div>`);
+
+      const targetQuery = $('#target-search').value.trim().toLocaleLowerCase('ru');
+      const targetRange = $('#target-price').value;
+      const visibleTargets = targets.filter(product => product.name.toLocaleLowerCase('ru').includes(targetQuery) && inPriceRange(product, targetRange));
+      renderHtml('#target-grid', visibleTargets.length ? visibleTargets.map(product => targetPickerCard(product)).join('') : '<div class="empty-state" style="grid-column:1/-1">Выберите исходные товары с меньшей общей стоимостью.</div>');
+
+      const displayChance = displayedUpgradeChance(sourceValue, target);
+      animateChanceNumber(displayChance);
+      const chanceDegrees = displayChance * 3.6;
+      $('#chance-wheel').style.setProperty('--zone-start', `${180 - chanceDegrees / 2}deg`);
+      $('#chance-wheel').style.setProperty('--zone-end', `${180 + chanceDegrees / 2}deg`);
+      $('#upgrade-btn').disabled = state.sourceMode !== 'inventory' || !sources.length || !target || state.running;
+      $('#upgrade-btn').innerHTML = `${ICONS.check}${state.running ? 'Проверяем шанс…' : state.sourceMode === 'catalog' ? 'Сначала оплатите товары' : `Апгрейд ${sources.length > 1 ? `×${sources.length}` : ''}`}`;
+      $$('[data-source-mode]').forEach(button => {
+        const active = button.dataset.sourceMode === state.sourceMode;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      $$('[data-inventory-count]').forEach(node => node.textContent = state.inventory.length);
+      $$('[data-catalog-count]').forEach(node => node.textContent = PRODUCTS.length);
+      renderPurchaseCart();
+    }
+
+    function sourcePickerCard(product, mode, key) {
+      const selectedList = mode === 'catalog' ? state.purchaseSelection : state.upgradeSelection;
+      const selectedIndex = selectedList.indexOf(key);
+      const selected = selectedIndex >= 0;
+      const attr = mode === 'catalog' ? 'data-toggle-purchase' : 'data-toggle-inventory';
+      const badge = `<em class="source-origin${mode === 'inventory' ? ' owned' : ''}">${mode === 'inventory' ? 'В профиле' : 'Купить товар'}</em>`;
+      return `<button class="picker-card${selected ? ' selected' : ''}" type="button" ${attr}="${key}" aria-pressed="${selected}">${selected ? `<span class="selection-index">${selectedIndex + 1}</span>` : ''}<img src="${escapeHtml(productArtwork(product))}" alt="" width="180" height="144" loading="lazy"><strong title="${escapeHtml(product.name)}">${escapeHtml(product.name)}</strong><span>${money(product.price)}</span>${badge}</button>`;
+    }
+
+    function targetPickerCard(product) {
+      const selected = product.id === state.targetId;
+      return `<button class="picker-card${selected ? ' selected' : ''}" type="button" data-pick-target="${product.id}" aria-pressed="${selected}"><img src="${escapeHtml(productArtwork(product))}" alt="" width="180" height="144" loading="lazy"><strong title="${escapeHtml(product.name)}">${escapeHtml(product.name)}</strong><span>${money(product.price)}</span></button>`;
+    }
+
+    function toggleSelection(list, value, limit = Infinity) {
+      const position = list.indexOf(value);
+      if (position >= 0) list.splice(position, 1);
+      else if (list.length < limit) list.push(value);
+      else return showToast(`В апгрейд можно выбрать не больше ${APP_CONFIG.maxUpgradeItems} товаров`);
+      state.targetId = null;
+      renderUpgrade();
+    }
+
+    function renderPurchaseCart() {
+      const products = selectedCatalogProducts();
+      const total = products.reduce((sum, product) => sum + product.price, 0);
+      $('#upgrade-cart-count').textContent = products.length;
+      $('#upgrade-cart-button').classList.toggle('show', state.route === 'upgrade' && state.sourceMode === 'catalog' && products.length > 0);
+      renderHtml('#purchase-items', products.length ? products.map((product, index) => `<div class="purchase-item"><img src="${escapeHtml(productArtwork(product))}" alt=""><div><strong>${escapeHtml(product.name)}</strong><br><span>${money(product.price)}</span></div><button class="danger-btn remove-btn" type="button" data-remove-purchase="${index}" aria-label="Убрать ${escapeHtml(product.name)}">${ICONS.trash}</button></div>`).join('') : '<div class="empty-state"><p>Выберите до трёх товаров во вкладке «Купить».</p></div>');
+      $('#purchase-total').textContent = money(total);
+      $('#purchase-pay').disabled = !products.length || total > state.balance;
+      $('#purchase-pay').textContent = total > state.balance ? 'Недостаточно баланса' : 'Оплатить и перенести в «Мои»';
+    }
+
+    function openPurchaseCart() {
+      renderPurchaseCart();
+      $('#purchase-modal').classList.add('open');
+      $('#purchase-modal').setAttribute('aria-hidden', 'false');
+      $('#purchase-close').focus();
+    }
+
+    function closePurchaseCart() {
+      $('#purchase-modal').classList.remove('open');
+      $('#purchase-modal').setAttribute('aria-hidden', 'true');
+      $('#upgrade-cart-button').focus();
+    }
+
+    function checkoutUpgradePurchase() {
+      const products = selectedCatalogProducts();
+      const total = products.reduce((sum, product) => sum + product.price, 0);
+      if (!products.length || total > state.balance) return;
+      const firstNewIndex = state.inventory.length;
+      state.balance -= total;
+      state.inventory.push(...products.map(product => product.id));
+      state.upgradeSelection = products.map((_, index) => firstNewIndex + index);
+      state.purchaseSelection = [];
+      state.sourceMode = 'inventory';
+      closePurchaseCart();
+      renderAll();
+      showToast('Оплаченные товары перенесены в «Мои» и выбраны для апгрейда');
+    }
+
+    function performUpgrade() {
+      if (state.running || state.sourceMode !== 'inventory') return;
+      const sourceEntries = selectedInventoryEntries();
+      const sources = sourceEntries.map(entry => entry.product);
+      const sourceValue = sources.reduce((sum, product) => sum + product.price, 0);
+      const target = productById(state.targetId);
+      const displayChance = displayedUpgradeChance(sourceValue, target);
+      const baseChance = upgradeChance(sourceValue, target);
+      if (!sources.length || !target || !baseChance || !displayChance) return;
+      const outcome = resolveUpgradeOutcome(sourceValue, target, displayChance);
+
+      sourceEntries.map(entry => entry.index).sort((a, b) => b - a).forEach(index => state.inventory.splice(index, 1));
+      state.running = true;
+      $('#upgrade-btn').disabled = true;
+      $('#upgrade-btn').innerHTML = `${ICONS.check}Проверяем шанс…`;
+      $('#upgrade-btn').classList.add('is-running');
+      $('#chance-wheel').classList.add('is-spinning');
+      $('.upgrade-stage').classList.add('is-resolving');
+      if ('vibrate' in navigator) navigator.vibrate(12);
+      const won = outcome.won;
+      const chanceDegrees = displayChance * 3.6;
+      const zoneStart = 180 - chanceDegrees / 2;
+      const zoneEnd = 180 + chanceDegrees / 2;
+      const edgePadding = Math.min(3, chanceDegrees / 4, (360 - chanceDegrees) / 4);
+      const landing = won
+        ? zoneStart + edgePadding + Math.random() * Math.max(0, chanceDegrees - edgePadding * 2)
+        : (zoneEnd + edgePadding + Math.random() * Math.max(0, 360 - chanceDegrees - edgePadding * 2)) % 360;
+      const needle = $('#needle-wrap');
+      needle.style.transition = 'none';
+      needle.style.transform = 'rotate(0deg)';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        needle.style.transition = 'transform 2.35s cubic-bezier(.12,.72,.08,1)';
+        needle.style.transform = `rotate(${1440 + landing}deg)`;
+      }));
+
+      window.setTimeout(() => {
+        $('#upgrade-btn').classList.remove('is-running');
+        $('#chance-wheel').classList.remove('is-spinning');
+        $('.upgrade-stage').classList.remove('is-resolving');
+        if (won) state.inventory.push(target.id);
+        updateUpgradeBonusesAfterRound({
+          won,
+          sourceValue,
+          displayChance,
+          cashbackGuarantee: outcome.cashbackGuarantee
+        });
+        state.upgrades.unshift({ sourceIds: sources.map(source => source.id), targetId: target.id, chance: displayChance, won, at: new Date() });
+        state.upgradeSelection = [];
+        state.running = false;
+        renderCatalog();
+        renderCart();
+        renderProfile();
+        showUpgradeResult(won, sources, target, displayChance);
+      }, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 50 : 2350);
+    }
+
+    function showUpgradeResult(won, sources, target, chance) {
+      const symbol = $('#result-symbol');
+      const sourceNames = sources.map(source => source.name).join(' + ');
+      symbol.classList.toggle('loss', !won);
+      symbol.innerHTML = won ? ICONS.check : ICONS.close;
+      $('#result-title').textContent = won ? 'Апгрейд успешен' : 'В этот раз не вышло';
+      $('#result-text').textContent = won ? `${target.name} добавлен в ваши товары. Шанс составлял ${chance.toFixed(1)}%.` : `${sourceNames} использованы. Шанс составлял ${chance.toFixed(1)}%.`;
+      $('#result-modal').classList.remove('outcome-win', 'outcome-loss');
+      $('#result-modal').classList.add('open', won ? 'outcome-win' : 'outcome-loss');
+      $('#result-modal').setAttribute('aria-hidden', 'false');
+      if ('vibrate' in navigator) navigator.vibrate(won ? [18, 45, 28] : [32]);
+      $('#result-close').focus();
+    }
+
+    function closeResult() {
+      $('#result-modal').classList.remove('open');
+      $('#result-modal').setAttribute('aria-hidden', 'true');
+      window.setTimeout(() => $('#result-modal').classList.remove('outcome-win', 'outcome-loss'), 240);
+      renderUpgrade();
+      $('#upgrade-btn').focus();
+    }
+
+    function renderProfile() {
+      $('#profile-balance').textContent = money(state.balance);
+      $('#stat-items').textContent = state.inventory.length;
+      $('#stat-upgrades').textContent = state.upgrades.length;
+      const wins = state.upgrades.filter(item => item.won).length;
+      $('#stat-wins').textContent = state.upgrades.length ? `${Math.round(wins / state.upgrades.length * 100)}%` : '0%';
+      const inventory = state.inventory.map((id, index) => ({ product: productById(id), index })).filter(item => item.product);
+      $('#inventory-grid').innerHTML = inventory.length ? inventory.map(({ product, index }) => `<article class="inventory-card"><img src="${escapeHtml(productArtwork(product))}" alt="${escapeHtml(product.name)}" width="200" height="148"><strong>${escapeHtml(product.name)}</strong><span class="price">${money(product.price)}</span><div class="inventory-actions"><button class="soft-btn" type="button" data-use-upgrade="${index}">В апгрейд</button><a class="ghost-btn" aria-label="Вывести ${escapeHtml(product.name)} через Telegram" target="_blank" rel="noopener" href="https://t.me/xw_shked?text=${encodeURIComponent(`Здравствуйте! Хочу вывести товар: ${product.name} (${money(product.price)}).`)}">Вывести</a></div></article>`).join('') : '<div class="empty-state" style="grid-column:1/-1"><h3>Здесь появятся купленные товары</h3><p>Купите товар в каталоге или выиграйте его в апгрейде.</p></div>';
+      $('#history-list').innerHTML = state.upgrades.length ? state.upgrades.map(item => { const sources = (item.sourceIds || [item.sourceId]).map(productById).filter(Boolean), target = productById(item.targetId); return `<div class="history-item"><span class="history-dot${item.won ? ' win' : ''}"></span><div><strong>${item.won ? 'Успешный апгрейд' : 'Неудачная попытка'}</strong><p>${escapeHtml(sources.map(source => source.name).join(' + ') || 'Товар')} → ${escapeHtml(target?.name || 'Товар')}</p></div><span class="history-chance">${item.chance.toFixed(1)}%</span></div>`; }).join('') : '<div class="empty-state"><p>Вы ещё не делали апгрейдов.</p></div>';
+      renderAdminPanel();
+    }
+
+    function useInventoryForUpgrade(inventoryIndex) {
+      const id = state.inventory[Number(inventoryIndex)];
+      if (!id) return;
+      state.sourceMode = 'inventory';
+      state.upgradeSelection = [Number(inventoryIndex)];
+      state.targetId = null;
+      renderUpgrade();
+      navigate('upgrade');
+    }
+
+    function parseStock(value) {
+      const normalized = String(value || '').trim().toLocaleLowerCase('ru').replace(/ё/g, 'е');
+      if (normalized === 'на заказ' || normalized === 'order') return 'order';
+      if (!/^\d{1,7}$/.test(normalized)) throw new Error('Наличие: укажите количество или «на заказ»');
+      const count = Number(normalized);
+      if (!Number.isSafeInteger(count) || count < 0 || count > 1_000_000) throw new Error('Некорректное количество');
+      return count;
+    }
+
+    function parseFlavors(value, previous = []) {
+      const lines = String(value || '').split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+      if (!lines.length || lines.length > 40) throw new Error('Добавьте от 1 до 40 вариантов');
+      const usedNames = new Set();
+      return lines.map((line, index) => {
+        const parts = line.split('|').map(part => part.trim());
+        if (parts.length !== 2) throw new Error(`Строка ${index + 1}: используйте формат «Название | количество»`);
+        const [name, stockValue] = parts;
+        if (name.length < 1 || name.length > 70) throw new Error(`Строка ${index + 1}: название варианта слишком длинное`);
+        const key = name.toLocaleLowerCase('ru');
+        if (usedNames.has(key)) throw new Error(`Вариант «${name}» указан дважды`);
+        usedNames.add(key);
+        const old = previous.find(item => item.name.toLocaleLowerCase('ru') === key);
+        return { id: old?.id || `v${Date.now().toString(36)}${index.toString(36)}`, name, stock: parseStock(stockValue) };
+      });
+    }
+
+    function resetProductForm(form = $('#product-form')) {
+      form.reset();
+      $('#product-edit-id').value = '';
+      $('#product-submit').textContent = 'Добавить товар во все разделы';
+      $('#product-edit-cancel').hidden = true;
+    }
+
+    function editProduct(productId) {
+      if (!state.isAdmin) return showToast('Недостаточно прав');
+      const product = productById(productId);
+      if (!product) return;
+      $('#product-edit-id').value = product.id;
+      $('#product-name').value = product.name;
+      $('#product-price').value = product.price;
+      $('#product-category').value = product.category;
+      $('#product-stock').value = isOrderStock(product.stock) ? 'на заказ' : product.stock;
+      $('#product-image-url').value = product.image?.startsWith('https://') ? product.image : '';
+      $('#product-description').value = product.description;
+      $('#product-flavors').value = product.flavors.map(flavor => `${flavor.name} | ${isOrderStock(flavor.stock) ? 'на заказ' : flavor.stock}`).join('\n');
+      $('#product-submit').textContent = 'Сохранить изменения';
+      $('#product-edit-cancel').hidden = false;
+      $('#admin-panel').open = true;
+      $('#product-name').focus({ preventScroll: true });
+      $('#product-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    async function addProduct(form) {
+      if (!state.isAdmin) throw new Error('Недостаточно прав');
+      const data = new FormData(form);
+      const editId = Number(data.get('editId')) || 0;
+      const existing = editId ? productById(editId) : null;
+      if (editId && !existing) throw new Error('Редактируемый товар не найден');
+      const file = data.get('imageFile');
+      let image = String(data.get('imageUrl') || '').trim();
+      if (file && file.size) image = await fileToDataUrl(file);
+      else if (image) image = validateRemoteImageUrl(image);
+      else if (existing) image = existing.image;
+      const name = String(data.get('name') || '').trim();
+      const description = String(data.get('description') || '').trim();
+      const category = String(data.get('category') || '');
+      const price = Number(data.get('price'));
+      const stock = parseStock(data.get('stock'));
+      const flavors = parseFlavors(data.get('flavors'), existing?.flavors || []);
+      const allowedCategories = new Set(['Одноразовые', 'Жидкости', 'POD-системы', 'Снюс', 'Аксессуары']);
+      if (name.length < 2 || name.length > 80) throw new Error('Название должно содержать 2–80 символов');
+      if (description.length < 2 || description.length > 300) throw new Error('Описание должно содержать 2–300 символов');
+      if (!allowedCategories.has(category)) throw new Error('Недопустимая категория');
+      if (!Number.isFinite(price) || price < 1 || price > 1_000_000) throw new Error('Некорректная цена');
+      const product = existing || { id: Math.max(0, ...PRODUCTS.map(item => item.id)) + 1, popular: 5, tone: '#29313c' };
+      Object.assign(product, { name, category, price, description, image, stock, flavors });
+      if (!existing) PRODUCTS.push(product);
+      else state.cart = state.cart.filter(item => item.productId !== product.id || product.flavors.some(flavor => flavor.id === item.flavorId));
+      resetProductForm(form);
+      renderCategories();
+      renderAll();
+      showToast(existing ? `${product.name} обновлён во всех разделах` : `${product.name} добавлен в каталог и апгрейд`);
+    }
+
+    function fileToDataUrl(file) {
+      const allowedTypes = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/gif']);
+      if (!allowedTypes.has(file.type)) return Promise.reject(new Error('Разрешены JPG, PNG, WebP или GIF'));
+      if (file.size > APP_CONFIG.maxImageBytes) return Promise.reject(new Error('Файл не должен превышать 5 МБ'));
+      return new Promise((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.onerror = () => reject(new Error('Не удалось прочитать файл')); reader.readAsDataURL(file); });
+    }
+
+    function validateRemoteImageUrl(value) {
+      let url;
+      try { url = new URL(value); } catch { throw new Error('Некорректная ссылка на изображение'); }
+      if (url.protocol !== 'https:') throw new Error('Изображение должно загружаться только по HTTPS');
+      return url.href;
+    }
+
+    function renderAdminPanel() {
+      const panel = $('#admin-panel');
+      panel.hidden = !state.isAdmin;
+      if (!state.isAdmin) return;
+      $('#admin-product-list').innerHTML = PRODUCTS.map(product => `<div class="admin-product-row"><img src="${escapeHtml(productArtwork(product))}" alt=""><strong title="${escapeHtml(product.name)}">${escapeHtml(product.name)}<span style="display:block">${product.flavors.length} ${plural(product.flavors.length,'вариант','варианта','вариантов')}</span></strong><span class="admin-stock">${stockLabel(product.stock)} · ${money(product.price)}</span><button class="soft-btn" type="button" data-admin-edit="${product.id}" aria-label="Настроить ${escapeHtml(product.name)}">Настроить</button><button class="danger-btn" type="button" data-admin-delete="${product.id}" aria-label="Удалить ${escapeHtml(product.name)}">Удалить</button></div>`).join('');
+    }
+
+    function deleteProduct(productId) {
+      if (!state.isAdmin) return showToast('Недостаточно прав');
+      const product = productById(productId);
+      if (!product || !window.confirm(`Удалить «${product.name}» из ассортимента?`)) return;
+      const index = PRODUCTS.findIndex(item => item.id === product.id);
+      PRODUCTS.splice(index, 1);
+      state.cart = state.cart.filter(item => item.productId !== product.id);
+      state.inventory = state.inventory.filter(id => id !== product.id);
+      state.purchaseSelection = state.purchaseSelection.filter(id => id !== product.id);
+      state.upgradeSelection = [];
+      if (state.targetId === product.id) state.targetId = null;
+      renderCategories();
+      renderAll();
+      showToast(`${product.name} удалён из ассортимента`);
+    }
+
+    function navigate(route) {
+      if (!['catalog','cart','upgrade','profile'].includes(route)) route = 'catalog';
+      const enteringUpgrade = route === 'upgrade' && state.route !== 'upgrade';
+      state.route = route;
+      if (enteringUpgrade) state.roundSignature = '';
+      $$('.view').forEach(view => view.classList.toggle('active', view.id === `view-${route}`));
+      $$('.nav-btn').forEach(button => { const active = button.dataset.route === route; button.classList.toggle('active', active); active ? button.setAttribute('aria-current','page') : button.removeAttribute('aria-current'); });
+      history.replaceState(null, '', `#${route}`);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      $('#main').focus({ preventScroll: true });
+      if (route === 'upgrade') renderUpgrade();
+      if (route === 'profile') renderProfile();
+      if (route === 'cart') renderCart();
+      renderPurchaseCart();
+    }
+
+    let toastTimer;
+    function showToast(message) {
+      clearTimeout(toastTimer);
+      $('#toast-text').textContent = message;
+      $('#toast').classList.add('show');
+      toastTimer = setTimeout(() => $('#toast').classList.remove('show'), 3200);
+    }
+
+    function renderAll() { renderCatalog(); renderCart(); renderUpgrade(); renderProfile(); }
+
+    document.addEventListener('click', event => {
+      const route = event.target.closest('[data-route]');
+      if (route) { event.preventDefault(); navigate(route.dataset.route); return; }
+      const openProduct = event.target.closest('[data-open-product]'); if (openProduct) return openProductModal(openProduct.dataset.openProduct);
+      const flavorQuantity = event.target.closest('[data-flavor-quantity]'); if (flavorQuantity) return changeModalQuantity(flavorQuantity.dataset.flavorQuantity, Number(flavorQuantity.dataset.delta));
+      const cartQuantity = event.target.closest('[data-cart-quantity]'); if (cartQuantity) return changeCartQuantity(Number(cartQuantity.dataset.cartQuantity), Number(cartQuantity.dataset.delta));
+      const remove = event.target.closest('[data-remove-cart]'); if (remove) return removeFromCart(remove.dataset.removeCart);
+      const purchase = event.target.closest('[data-toggle-purchase]'); if (purchase) return toggleSelection(state.purchaseSelection, Number(purchase.dataset.togglePurchase));
+      const inventory = event.target.closest('[data-toggle-inventory]'); if (inventory) return toggleSelection(state.upgradeSelection, Number(inventory.dataset.toggleInventory), APP_CONFIG.maxUpgradeItems);
+      const removePurchase = event.target.closest('[data-remove-purchase]'); if (removePurchase) { state.purchaseSelection.splice(Number(removePurchase.dataset.removePurchase), 1); renderUpgrade(); return; }
+      const pickTarget = event.target.closest('[data-pick-target]'); if (pickTarget) { state.targetId = Number(pickTarget.dataset.pickTarget); renderUpgrade(); return; }
+      const mode = event.target.closest('[data-source-mode]'); if (mode) { state.sourceMode = mode.dataset.sourceMode; state.targetId = null; renderUpgrade(); return; }
+      const use = event.target.closest('[data-use-upgrade]'); if (use) return useInventoryForUpgrade(use.dataset.useUpgrade);
+      const adminEdit = event.target.closest('[data-admin-edit]'); if (adminEdit) return editProduct(Number(adminEdit.dataset.adminEdit));
+      const adminDelete = event.target.closest('[data-admin-delete]'); if (adminDelete) return deleteProduct(Number(adminDelete.dataset.adminDelete));
+      const quick = event.target.closest('[data-quick]'); if (quick) { state.quick = quick.dataset.quick; $$('.quick-card').forEach(button => button.classList.toggle('active', button === quick)); renderCatalog(); return; }
+      if (event.target.closest('[data-scroll-products]')) $('#products-anchor').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    $('#global-search').addEventListener('input', () => { if (state.route !== 'catalog') navigate('catalog'); renderCatalog(); });
+    $('#category-filter').addEventListener('change', renderCatalog);
+    $('#sort-filter').addEventListener('change', renderCatalog);
+    ['source-search','target-search'].forEach(id => $(`#${id}`).addEventListener('input', renderUpgrade));
+    ['source-price','target-price'].forEach(id => $(`#${id}`).addEventListener('change', renderUpgrade));
+    $('#checkout-btn').addEventListener('click', checkout);
+    $('#product-modal-close').addEventListener('click', closeProductModal);
+    $('#product-add-selected').addEventListener('click', addSelectedVariantsToCart);
+    $('#product-modal').addEventListener('click', event => { if (event.target === $('#product-modal')) closeProductModal(); });
+    $('#upgrade-cart-button').addEventListener('click', openPurchaseCart);
+    $('#purchase-close').addEventListener('click', closePurchaseCart);
+    $('#purchase-pay').addEventListener('click', checkoutUpgradePurchase);
+    $('#purchase-modal').addEventListener('click', event => { if (event.target === $('#purchase-modal')) closePurchaseCart(); });
+    $('#upgrade-btn').addEventListener('click', performUpgrade);
+    $('#result-close').addEventListener('click', closeResult);
+    $('#result-modal').addEventListener('click', event => { if (event.target === $('#result-modal')) closeResult(); });
+    document.addEventListener('keydown', event => { if (event.key !== 'Escape') return; if ($('#product-modal').classList.contains('open')) closeProductModal(); else if ($('#result-modal').classList.contains('open')) closeResult(); else if ($('#purchase-modal').classList.contains('open')) closePurchaseCart(); });
+    $('#product-form').addEventListener('submit', async event => { event.preventDefault(); try { await addProduct(event.currentTarget); } catch (error) { showToast(error.message || 'Не удалось добавить товар'); } });
+    $('#product-edit-cancel').addEventListener('click', () => resetProductForm());
+
+    renderCategories();
+    renderAll();
+    navigate(location.hash.slice(1) || 'catalog');
+  </script>
+</body>
+</html>
